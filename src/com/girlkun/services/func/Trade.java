@@ -142,7 +142,7 @@ public class Trade {
             }
         } else {
             Service.getInstance().sendThongBaoFromAdmin(pl,
-                    "|5|VUI LÒNG KÍCH HOẠT TÀI KHOẢN TẠI\n|7|LÊN WEB NROSEOBI.ME\n|5|ĐỂ MỞ KHÓA TÍNH NĂNG GIAO DỊCH");
+                    "|5|VUI LÒNG KÍCH HOẠT TÀI KHOẢN TẠI\n|7|LÊN WEB nrolegend.online\n|5|ĐỂ MỞ KHÓA TÍNH NĂNG GIAO DỊCH");
             removeItemTrade(pl, index);
         }
     }

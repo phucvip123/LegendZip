@@ -247,7 +247,7 @@ public class ShopServiceNew {
             msg.writer().writeByte(items.size());
             for (Item item : items) {
                 msg.writer().writeShort(item.template.id);
-                msg.writer().writeUTF("\n|7|Nro king");
+                msg.writer().writeUTF("\n|7|Nro Legend");
                 msg.writer().writeByte(item.itemOptions.size() + 1);
                 for (Item.ItemOption io : item.itemOptions) {
                     msg.writer().writeByte(io.optionTemplate.id);

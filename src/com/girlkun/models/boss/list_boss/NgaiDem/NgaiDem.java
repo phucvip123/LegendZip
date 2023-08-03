@@ -61,7 +61,7 @@ public class NgaiDem extends Boss {
         //int randomBC = new Random().nextInt(binhCan.length);
         int randomNR = new Random().nextInt(NRs.length);
         if (Util.isTrue(50, 100)) {
-            if (Util.isTrue(0, 50)) {
+            if (Util.isTrue(50, 100)) {
                 Service.gI().dropItemMap(this.zone, Util.manhTS(zone,1241, 1, this.location.x, this.location.y, plKill.id));
                 return;
             }

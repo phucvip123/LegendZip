@@ -185,14 +185,17 @@ public class Manager {
     public static List<TOP> realTopSieuHang(Connection con) {
         List<TOP> tops = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT id, CAST( split_str(data_point,',',18) AS UNSIGNED) AS rank FROM player ORDER BY CAST( split_str(data_point,',',18) AS UNSIGNED) ASC LIMIT 100");
+            PreparedStatement ps = con.prepareStatement("SELECT id, CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data_point, ',', 18), ',', -1) AS UNSIGNED) AS rank\r\n" + //
+                    "FROM player\n" + //
+                    "ORDER BY rank ASC\n" + //
+                    "LIMIT 100" );
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 long rank = rs.getLong("rank");
                 if (rank > 0 && rank <= 100) {
                     TOP top = TOP.builder().id_player(rs.getInt("id")).build();
-                    top.setInfo1("");
-                    top.setInfo2("");
+                    top.setInfo1("1");
+                    top.setInfo2("2");
                     tops.add(top);
                 }
             }

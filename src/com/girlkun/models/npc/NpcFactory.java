@@ -3417,6 +3417,9 @@ public class NpcFactory {
                                 if (select == 0) {
                                     ChangeMapService.gI().changeMapBySpaceShip(player, 80, -1, 870);
                                 }
+                            }else if(this.mapId == 80){
+                                if(select == 0)
+                                    ChangeMapService.gI().changeMapBySpaceShip(player, 131, -1, 870);
                             }
                             break;
                     }
@@ -3472,11 +3475,9 @@ public class NpcFactory {
                 if (canOpenNpc(player)) {
                     try {
                         Item biKiep = InventoryServiceNew.gI().findItem(player.inventory.itemsBag, 590);
-                        if (biKiep != null) {
+                        if(biKiep == null) biKiep.quantity = 0;
                             this.createOtherMenu(player, ConstNpc.BASE_MENU, "Bạn đang có " + biKiep.quantity + " bí kiếp.\n"
-                                    + "Hãy kiếm đủ 10000 bí kiếp tôi sẽ dạy bạn cách dịch chuyển tức thời của người Yardart", "Học dịch\nchuyển", "Đóng");
-                        }
-
+                                    + "Hãy kiếm đủ 10000 bí kiếp tôi sẽ dạy bạn cách dịch chuyển tức thời của người Yardart", "Học dịch\nchuyển", "Đóng");                    
                     } catch (Exception ex) {
                         ex.printStackTrace();
 
@@ -4216,7 +4217,15 @@ public class NpcFactory {
                                 //         PetService.gI().changeBerusPet(player);
                                 //     }
                                 // }
-                                PlayerService.gI().changeAndSendTypePK(player, ConstPlayer.PK_ALL);
+                                if(!player.isBoss){
+                                    player.isBoss = true;
+                                    PlayerService.gI().changeAndSendTypePK(player, ConstPlayer.PK_ALL);
+                                    Service.gI().sendThongBaoBenDuoi("Boss "+player.name + " vừa xuất hiện tại "+ player.zone);
+                                }else{
+                                    player.isBoss = false;
+                                    PlayerService.gI().changeAndSendTypePK(player, ConstPlayer.NON_PK);
+                                }
+                                
                                 break;
                             case 2:
                                 if (player.isAdmin()) {

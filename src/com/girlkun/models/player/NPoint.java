@@ -613,6 +613,7 @@ public class NPoint {
     }
 
     private void setNeDon() {
+        
 
     }
 
@@ -660,12 +661,12 @@ public class NPoint {
         //pet mabư
         if (this.player.isPet && ((Pet) this.player).typePet == 1
                 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA4)) {
-            this.hpMax += ((long) this.hpMax * 20 / 100);
+            this.hpMax += ((long) this.hpMax * 10 / 100);
         }
         //pet berus
         if (this.player.isPet && ((Pet) this.player).typePet == 2// chi so lam sao bac tu cho dj
                 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA4)) {
-            this.hpMax += ((long) this.hpMax * 10 / 100);//chi so hp
+            this.hpMax += ((long) this.hpMax * 20 / 100);//chi so hp
         }
         //phù
         if (this.player.zone != null && MapService.gI().isMapBlackBallWar(this.player.zone.map.mapId)) {
@@ -810,12 +811,12 @@ public class NPoint {
         //pet mabư
         if (this.player.isPet && ((Pet) this.player).typePet == 1
                 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA4)) {
-            this.dame += ((long) this.dame * 20 / 100);
+            this.dame += ((long) this.dame * 10 / 100);
         }
         //pet mabư
         if (this.player.isPet && ((Pet) this.player).typePet == 2
                 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA4)) {
-            this.dame += ((long) this.dame * 10 / 100);
+            this.dame += ((long) this.dame * 20 / 100);
         }
         //thức ăn
         if (!this.player.isPet && this.player.itemTime.isEatMeal
@@ -1156,6 +1157,8 @@ public class NPoint {
             } else if (skillSelect.template.id == Skill.TU_SAT && player.isPl()) {
                 Service.gI().sendThongBaoBenDuoi(player.name + " đã đánh một " + player.playerSkill.skillSelect.template.name + " với sát thương " + Util.numberToMoney(Util.maxLong(dameAttack)));
             } else if (skillSelect.template.id == Skill.QUA_CAU_KENH_KHI && player.isPl()) {
+                Service.gI().sendThongBaoBenDuoi(player.name + " đã đánh một " + player.playerSkill.skillSelect.template.name + " với sát thương " + Util.numberToMoney(Util.maxLong(dameAttack)));
+            }else{
                 Service.gI().sendThongBaoBenDuoi(player.name + " đã đánh một " + player.playerSkill.skillSelect.template.name + " với sát thương " + Util.numberToMoney(Util.maxLong(dameAttack)));
             }
             Logger.log(Logger.PURPLE, "Player: " + player.name + " Id: " + player.id + " Skill: " + player.playerSkill.skillSelect.template.name + "Dame: " + Util.numberToMoney(Util.maxLong(dameAttack)) + " \n");

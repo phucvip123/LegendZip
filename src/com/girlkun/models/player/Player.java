@@ -214,6 +214,16 @@ public class Player {
     public void setSession(MySession session) {
         this.session = session;
     }
+    public void chat(String text) {
+        Service.getInstance().chat(this, text);
+    }
+    public void chatHp(){
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String hp = decimalFormat.format(this.nPoint.hp);
+        hp = hp.replaceAll(",","."); 
+        String text = "|1|Hp hiện tại của "+this.name+" là: \n" + "|7|"+hp;  
+        this.chat(text);  
+    }
 
     public void sendMessage(Message msg) {
         if (this.session != null) {
@@ -699,7 +709,7 @@ public class Player {
                 }
                 setDie(plAtt);
             }
-           
+           if(this.nPoint.hp > Integer.MAX_VALUE) this.chatHp();
             return damage;
         } else {
             return 0;

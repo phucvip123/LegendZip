@@ -124,7 +124,7 @@ public class Service {
             for (int i = 0; i < tops.size(); i++) {
                 TOP top = tops.get(i);
                 Player pl = GodGK.loadById(top.getId_player());
-//                msg.writer().writeInt(isPVP != 1 ? (i + 1) : (int)pl.rankSieuHang);
+                msg.writer().writeInt(isPVP != 1 ? (i + 1) : (int)pl.rankSieuHang);
                 msg.writer().writeInt(i + 1);
                 msg.writer().writeInt((int) pl.id);
                 msg.writer().writeShort(pl.getHead());
@@ -135,7 +135,7 @@ public class Service {
                 msg.writer().writeShort(pl.getLeg());
                 msg.writer().writeUTF(pl.name);
                 msg.writer().writeUTF(top.getInfo1());
-//                msg.writer().writeUTF(isPVP == 1 ? top.getInfo2() : top.getInfo2() + pl.numKillSieuHang);
+                msg.writer().writeUTF(isPVP == 1 ? top.getInfo2() : top.getInfo2() + pl.numKillSieuHang);
                 msg.writer().writeUTF(isPVP == 1 ? ("Sức Đánh: " + pl.nPoint.dame +"\n"+ "HP: " + pl.nPoint.hpMax +"\n"+ "KI: " + pl.nPoint.mpMax +"\n" + "Điểm hạng: " + pl.rankSieuHang) : top.getInfo2());
             }
             player.sendMessage(msg);
@@ -155,7 +155,7 @@ public class Service {
             pl.sendMessage(msg);
             msg.cleanup();
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         } finally {
             if (msg != null) {
                 msg.cleanup();

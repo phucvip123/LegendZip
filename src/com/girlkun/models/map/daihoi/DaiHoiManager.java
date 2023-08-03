@@ -18,7 +18,7 @@ public class DaiHoiManager {
     public ArrayList<Player> lstPlayers = new ArrayList<>();
     public ArrayList<Player> lstPlayers2 = new ArrayList<>();
     public Map mapDhvt;
-    public long tOpenDHVT = 0;
+    public long tOpenDHVT = 20;
     public long tNextRound = 0;
     public byte roundNow = 0;
     public byte typeDHVT = 0;
