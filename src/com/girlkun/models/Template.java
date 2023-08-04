@@ -137,7 +137,7 @@ public class Template {
         public byte bgId;
 
         public byte zones;
-        public byte maxPlayerPerZone;
+        public int maxPlayerPerZone;
         public List<WayPoint> wayPoints;
 
         public byte[] mobTemp;

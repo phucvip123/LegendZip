@@ -43,6 +43,8 @@ public class kamiSooMe extends Boss {
 
     @Override
     public double injured(Player plAtt, double damage, boolean piercing, boolean isMobAttack) {
+        //Service.gI().resetPoint(this, this.location.x, this.location.y);
+        //this.zone.load_Me_To_Another(this);
         if(this.nPoint.hp>=Integer.MAX_VALUE){
             this.chatHp();
         }

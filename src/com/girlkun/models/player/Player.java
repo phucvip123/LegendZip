@@ -665,6 +665,8 @@ public class Player {
 
     //--------------------------------------------------------------------------
     public double injured(Player plAtt, double damage, boolean piercing, boolean isMobAttack) {
+       
+        
         if (!this.isDie()) {
             if (this.pet != null && this.pet.status == Pet.PROTECT) {
                 this.pet.playerAttack = plAtt;

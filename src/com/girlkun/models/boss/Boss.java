@@ -10,6 +10,7 @@ import com.girlkun.models.map.Zone;
 import com.girlkun.models.player.Player;
 import com.girlkun.models.skill.PlayerSkill;
 import com.girlkun.models.skill.Skill;
+import com.girlkun.network.io.Message;
 import com.girlkun.server.ServerNotify;
 import com.girlkun.services.EffectSkillService;
 import com.girlkun.services.MapService;
@@ -18,6 +19,7 @@ import com.girlkun.services.Service;
 import com.girlkun.services.SkillService;
 import com.girlkun.services.TaskService;
 import com.girlkun.services.func.ChangeMapService;
+import com.girlkun.utils.Logger;
 import com.girlkun.utils.SkillUtil;
 import com.girlkun.utils.Util;
 
@@ -404,7 +406,7 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
             this.changeToTypePK();
         }
         this.attack();
-        if(!this.isDie()){
+        if(!this.isDie() && this.nPoint.hp > Integer.MAX_VALUE){
             try{
                 DecimalFormat decimalFormat = new DecimalFormat("#,###");
                 String hp = decimalFormat.format(this.nPoint.hp);
@@ -415,6 +417,9 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
                 e.printStackTrace();
             }
         }
+        //this.zone.loadBoss(this);
+        //Service.gI().resetPoint(this, this.location.x, this.location.y);
+        //PlayerService.gI().sendInfoHp(this);
     }
 
     protected long lastTimeAttack;
@@ -440,6 +445,7 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
                         }
                     }
                     SkillService.gI().useSkill(this, pl, null,null);
+                    
                     checkPlayerDie(pl);
                 } else {
                     if (Util.isTrue(1, 2)) {
@@ -451,6 +457,7 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
             }
         }
     }
+    
 
     @Override
     public void checkPlayerDie(Player player) {
@@ -550,6 +557,7 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
                 damage = 1;
             }
             this.nPoint.subHP(damage);
+            //PlayerService.gI().sendInfoHp(this);
             if (isDie()) {
                 this.setDie(plAtt);
                 die(plAtt);

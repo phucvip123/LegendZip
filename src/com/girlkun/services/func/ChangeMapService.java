@@ -147,7 +147,7 @@ public class ChangeMapService {
             for (Zone zone : pl.zone.map.zones) {
                 msg.writer().writeByte(zone.zoneId);
                 int numPlayers = zone.getNumOfPlayers();
-                msg.writer().writeByte((numPlayers < 5 ? 0 : (numPlayers < 8 ? 1 : 2)));
+                msg.writer().writeByte((numPlayers < 5 ? 0 : (numPlayers < 10 ? 1 : 2)));
                 msg.writer().writeByte(numPlayers);
                 msg.writer().writeByte(zone.maxPlayer);
                 msg.writer().writeByte(0);

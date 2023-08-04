@@ -233,6 +233,7 @@ public class Input {
                                     if (player != null) {
                                         Item tvthang = ItemService.gI().createNewItem((short) 457);
                                         tvthang.quantity = (int) Math.round(sotvtai * 1.8);
+                                        tvthang.itemOptions.add(new Item.ItemOption(30, 1));
                                         InventoryServiceNew.gI().addItemBag(player, tvthang);
                                         InventoryServiceNew.gI().sendItemBags(player);
                                         Service.getInstance().sendThongBaoOK(player, "Kết quả" + "\nSố hệ thống quay ra : " + x + " "
@@ -289,6 +290,7 @@ public class Input {
                                     if (player != null) {
                                         Item tvthang = ItemService.gI().createNewItem((short) 457);
                                         //tvthang.itemOptions.;
+                                        tvthang.itemOptions.add(new Item.ItemOption(30, 1));
                                         tvthang.quantity = (int) Math.round(sotvxiu * 1.8);
                                         InventoryServiceNew.gI().addItemBag(player, tvthang);
                                         InventoryServiceNew.gI().sendItemBags(player);

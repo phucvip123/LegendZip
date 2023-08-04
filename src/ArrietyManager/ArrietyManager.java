@@ -49,7 +49,7 @@ public class ArrietyManager {
     
     private void handleAutoSave() {
         Client.gI().getPlayers().forEach(player -> {
-            System.out.println("Save data success of player:" + player.name);
+            //System.out.println("Save data success of player:" + player.name);
             PlayerDAO.updatePlayer(player);
         });
     }

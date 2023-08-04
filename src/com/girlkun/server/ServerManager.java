@@ -78,7 +78,7 @@ public class ServerManager {
     }
 
     public void run() {
-        long delay = 500;
+        long delay = 1;
         isRunning = true;
         activeCommandLine();
         activeGame();
@@ -133,7 +133,7 @@ public class ServerManager {
             }
         }, "Update dai hoi vo thuat").start();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1);
             BossManager.gI().loadBoss();
             Manager.MAPS.forEach(com.girlkun.models.map.Map::initBoss);
             

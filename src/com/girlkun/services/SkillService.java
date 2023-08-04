@@ -848,7 +848,7 @@ public class SkillService {
                 if (damePST >= plAtt.nPoint.hp) {
                     damePST = plAtt.nPoint.hp - 1;
                 }
-                damePST = plAtt.injured(null, damePST, true, false);
+                damePST = plAtt.injured(plAtt, damePST, false, false);
                 msg.writer().writeInt(Util.maxInt(plAtt.nPoint.hp));
                 msg.writer().writeInt(Util.maxInt(damePST));
                 msg.writer().writeBoolean(false);
@@ -878,7 +878,13 @@ public class SkillService {
             plAtt.nPoint.isCrit100 = true;
         }
         double dameHit = plInjure.injured(plAtt, miss ? 0 : plAtt.nPoint.getDameAttack(false), false, false);
-        phanSatThuong(plAtt, plInjure, dameHit);
+        if(plAtt.isBoss){
+            double damepst = dameHit * plInjure.nPoint.tlPST/100;
+            if(damepst>plAtt.nPoint.hp) damepst = plAtt.nPoint.hp - 1;
+            plAtt.injured(plInjure,damepst , false, false);
+        }else{
+            phanSatThuong(plAtt, plInjure, dameHit);
+        }
         hutHPMP(plAtt, dameHit, false);
         Message msg;
         try {
@@ -921,6 +927,7 @@ public class SkillService {
     private void playerAttackMob(Player plAtt, Mob mob, boolean miss, boolean dieWhenHpFull) {
         if (!mob.isDie()) {
             double dameHit = plAtt.nPoint.getDameAttack(true);
+            
             if (plAtt.charms.tdBatTu > System.currentTimeMillis() && plAtt.nPoint.hp == 1) {
                 dameHit = 0;
             }

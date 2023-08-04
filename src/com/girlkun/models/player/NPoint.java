@@ -68,7 +68,7 @@ public class NPoint {
     public boolean CoCaiTrangHoaDa;
     public boolean IsBiHoaDa;
 
-    public boolean khangTDHS;
+    public boolean khangTDHS = false;
 
     /**
      * Chỉ số cộng thêm
