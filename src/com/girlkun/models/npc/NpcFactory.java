@@ -47,6 +47,7 @@ import com.girlkun.models.skill.Skill;
 import com.girlkun.server.Client;
 import com.girlkun.server.Maintenance;
 import com.girlkun.server.Manager;
+import com.girlkun.server.ServerNotify;
 import com.girlkun.services.*;
 import com.girlkun.services.func.*;
 import com.girlkun.utils.Logger;
@@ -56,6 +57,7 @@ import com.girlkun.utils.Util;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 
 import static com.girlkun.services.func.SummonDragon.*;
@@ -1500,6 +1502,210 @@ public class NpcFactory {
                     }
                 }
             }
+        };
+    }
+    public static Npc hungvuong(int mapId, int status, int cx, int cy, int tempId, int avartar) {
+        return new Npc(mapId, status, cx, cy, tempId, avartar) {
+            @Override
+            public void openBaseMenu(Player player) {
+                if (canOpenNpc(player)) {
+                    createOtherMenu(player, ConstNpc.BASE_MENU,
+                            "Đem hoa về cho ta để nhạn cải trang\nĐến Map sự kiện để farm hoa.",
+                            "Tặng Hoa", "Map sự kiện", "Đóng");
+                }
+            }
+
+            @Override
+            public void confirmMenu(Player player, int select) {
+                if (canOpenNpc(player)) {
+                    if (this.mapId == 0) {
+                        if (player.iDMark.isBaseMenu()) {
+                            switch (select) {
+                                case 0:
+                                    this.createOtherMenu(player, ConstNpc.HUNG_VUONG, "|2|Hoa với thỏi vàng của nhà người đâu???\nCó 3 cách tặng quà cho Hùng Vương để nhận vật phẩm hiếm\nCách 1: Cần 40 thỏi vàng để đổi cải trang vĩnh viễn cực xịn\nCách 2: Cần x99 hoa + 1 Tỷ vàng\nCách 3: đến map sự kiện săn boss Ngộ Không kiếm dưa hấu\nCần x20 dưa hấu + 200tr vàng", "Tặng thỏi vàng\nNhận cải trang vĩnh viễn",
+                                            "Tặng Hoa Thường", "Tặng Dưa hấu", "đóng");
+                                    break;
+                                case 1: 
+                                    ChangeMapService.gI().changeMapBySpaceShip(player, 178, -1, 354);
+                                    break;  
+                                }
+                            } else if (player.iDMark.getIndexMenu() == ConstNpc.HUNG_VUONG) {
+                            switch (select) {
+                                case 0:
+                                    Item honLinhThu1 = null;
+                                    try {
+                                        honLinhThu1 = InventoryServiceNew.gI().findItemBag(player, 457);
+                                    } catch (Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                    if (honLinhThu1 == null || honLinhThu1.quantity < 40) {
+                                        this.npcChat(player, "Bạn không đủ 40 thỏi vàng");
+                                    } else if (player.inventory.gold < 0) {
+                                        this.npcChat(player, "Bạn không đủ 1 Tỷ vàng");
+                                    } else if (InventoryServiceNew.gI().getCountEmptyBag(player) == 0) {
+                                        this.npcChat(player, "Hành trang của bạn không đủ chỗ trống");
+                                    } else {
+                                        player.inventory.gold -= 0;
+                                        InventoryServiceNew.gI().subQuantityItemsBag(player, honLinhThu1, 40);
+                                        Service.gI().sendMoney(player);
+                                        Item trungLinhThu = ItemService.gI().createNewItem((short) 860);
+                                        
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(49, new Random().nextInt(35) + 10));
+
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(117, new Random().nextInt(27) + 12));
+
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(148, new Random().nextInt(20) + 10));
+                                        
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(77, new Random().nextInt(65) + 15));   
+                                        
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(103, new Random().nextInt(65) + 15));
+
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(14, new Random().nextInt(20) + 5));
+
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(5, new Random().nextInt(30) + 5));
+
+                                        InventoryServiceNew.gI().addItemBag(player, trungLinhThu);
+                                        InventoryServiceNew.gI().sendItemBags(player);
+                                        this.npcChat(player, "Bạn nhận được cải trang mị nương");
+                                        ServerNotify.gI().notify("Chúc mừng " + player.name + " vừa nhận được cải trang mị nương" + " tại NPC Hùng Vương");
+                             break;
+                                    }
+                                case 1:
+                                    Item honLinhThu = null;
+                                    try {
+                                        honLinhThu = InventoryServiceNew.gI().findItemBag(player, 723);
+                                    } catch (Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                    if (honLinhThu == null || honLinhThu.quantity < 99) {
+                                        this.npcChat(player, "Bạn không đủ 99 bông hồng");
+                                    } else if (player.inventory.gold < 1_000_000_000) {
+                                        this.npcChat(player, "Bạn không đủ 1 Tỷ vàng");
+                                    } else if (InventoryServiceNew.gI().getCountEmptyBag(player) == 1_000_000_000) {
+                                        this.npcChat(player, "Hành trang của bạn không đủ chỗ trống");
+                                    } else {
+                                        player.inventory.gold -= 1_000_000_000;
+                                        InventoryServiceNew.gI().subQuantityItemsBag(player, honLinhThu, 99);
+                                        Service.gI().sendMoney(player);
+                                        Item trungLinhThu = ItemService.gI().createNewItem((short) 421);
+                                        
+                                    trungLinhThu.itemOptions.add(new Item.ItemOption(49, new Random().nextInt(43) + 2));
+                                    
+                                    trungLinhThu.itemOptions.add(new Item.ItemOption(77, new Random().nextInt(65) + 2));   
+                                    
+                                    trungLinhThu.itemOptions.add(new Item.ItemOption(103, new Random().nextInt(65) + 2));
+
+                                    trungLinhThu.itemOptions.add(new Item.ItemOption(14, new Random().nextInt(10) + 2));
+
+                                    trungLinhThu.itemOptions.add(new Item.ItemOption(5, new Random().nextInt(30) + 5));
+
+                                    trungLinhThu.itemOptions.add(new Item.ItemOption(93, new Random().nextInt(30) + 1));   
+                                        InventoryServiceNew.gI().addItemBag(player, trungLinhThu);
+                                        InventoryServiceNew.gI().sendItemBags(player);
+                                        this.npcChat(player, "Bạn nhận được 1 cải trang sơn tinh");
+                             break;
+                                    }
+                                case 2:  
+                                                                        Item honLinhThu2 = null;
+                                    try {
+                                        honLinhThu2 = InventoryServiceNew.gI().findItemBag(player, 569);
+                                    } catch (Exception e) {
+//                                        throw new RuntimeException(e);
+                                    }
+                                    if (honLinhThu2 == null || honLinhThu2.quantity < 16) {
+                                        this.npcChat(player, "Bạn không đủ 49 Dưa hấu");
+                                    } else if (player.inventory.gold < 200_000_000) {
+                                        this.npcChat(player, "Bạn không 200tr vàng");
+                                    } else if (InventoryServiceNew.gI().getCountEmptyBag(player) == 200_000_000) {
+                                        this.npcChat(player, "Hành trang của bạn không đủ chỗ trống");
+                                    } else {
+                                        player.inventory.gold -= 200_000_000;
+                                        InventoryServiceNew.gI().subQuantityItemsBag(player, honLinhThu2, 16);
+                                        Service.gI().sendMoney(player);
+                                        Item trungLinhThu = ItemService.gI().createNewItem((short) 2069);
+                                        
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(49, new Random().nextInt(22) + 1));
+                                        
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(77, new Random().nextInt(25) + 1));   
+                                        
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(103, new Random().nextInt(25) + 1));
+
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(93, new Random().nextInt(6) + 1));   
+                                        InventoryServiceNew.gI().addItemBag(player, trungLinhThu);
+                                        InventoryServiceNew.gI().sendItemBags(player);
+                                        this.npcChat(player, "Bạn nhận được cánh bướm");
+                                        ServerNotify.gI().notify("Chúc mừng " + player.name + " vừa nhận được cánh bướm" + " khi tặng dưa hấu cho Hùng Vương");
+                                        break;
+                                    }
+
+                            //    case 3:
+                            //        ChangeMapService.gI().changeMapBySpaceShip(player, 178, -1, 354);
+                            //        break;
+                            }
+                            }
+                        }
+                    }
+                }
+        };
+    }
+            public static Npc berry(int mapId, int status, int cx, int cy, int tempId, int avartar) {
+        return new Npc(mapId, status, cx, cy, tempId, avartar) {
+            @Override
+            public void openBaseMenu(Player player) {
+                if (canOpenNpc(player)) {
+                    createOtherMenu(player, ConstNpc.BASE_MENU,
+                            "Để đổi được cải trang bí ẩn\nCần 300 thỏi vàng\noption cố định cực cao và Vĩnh Viễn",
+                            "Đổi Ngay");
+                }
+            }
+
+            @Override
+            public void confirmMenu(Player player, int select) {
+                if (canOpenNpc(player)) {
+                    if (this.mapId == 5) {
+                        if (player.iDMark.isBaseMenu()) {
+                            switch (select) {
+                                case 0:
+                                                                        Item honLinhThu11 = null;
+                                    try {
+                                        honLinhThu11 = InventoryServiceNew.gI().findItemBag(player, 457);
+                                    } catch (Exception e) {
+//                                        throw new RuntimeException(e);
+                                    }
+                                    if (honLinhThu11 == null || honLinhThu11.quantity < 300) {
+                                        this.npcChat(player, "Bạn không đủ 300 thỏi vàng");
+                                    } else if (player.inventory.gold < 0) {
+                                        this.npcChat(player, "Bạn không đủ 1 Tỷ vàng");
+                                    } else if (InventoryServiceNew.gI().getCountEmptyBag(player) == 0) {
+                                        this.npcChat(player, "Hành trang của bạn không đủ chỗ trống");
+                                    } else {
+                                        player.inventory.gold -= 0;
+                                        InventoryServiceNew.gI().subQuantityItemsBag(player, honLinhThu11, 300);
+                                        Service.gI().sendMoney(player);
+                                        Item trungLinhThu = ItemService.gI().createNewItem((short) 2032);
+                                trungLinhThu.itemOptions.add(new Item.ItemOption(50, 60));
+                                trungLinhThu.itemOptions.add(new Item.ItemOption(117, 30));
+                                trungLinhThu.itemOptions.add(new Item.ItemOption(77, 90));
+                                trungLinhThu.itemOptions.add(new Item.ItemOption(103, 90));
+                                trungLinhThu.itemOptions.add(new Item.ItemOption(14, 50));
+                                trungLinhThu.itemOptions.add(new Item.ItemOption(5, 55));
+
+
+                                        InventoryServiceNew.gI().addItemBag(player, trungLinhThu);
+                                        InventoryServiceNew.gI().sendItemBags(player);
+                                        this.npcChat(player, "Bạn nhận được cải trang Granola");
+                                        ServerNotify.gI().notify("Chúc mừng " + player.name + " vừa nhận được cải trang Granola" + " tại NPC Berry ở đảo Kame");
+                             break;
+                                    }
+
+//                                case 1: 
+//                                    ChangeMapService.gI().changeMapBySpaceShip(player, 5, -1, 354);
+//                                    break; // 
+                               }
+                            }
+                        }
+                    }
+                }
         };
     }
 
@@ -3986,6 +4192,8 @@ public class NpcFactory {
                     return gokuSSJ_2(mapId, status, cx, cy, tempId, avatar);
                 case ConstNpc.DUONG_TANG:
                     return duongtank(mapId, status, cx, cy, tempId, avatar);
+                case ConstNpc.HUNG_VUONG:
+                    return hungvuong(mapId, status, cx, cy, tempId, avatar);
                 case ConstNpc.GOHAN_NHAT_NGUYET:
                     return gohannn(mapId, status, cx, cy, tempId, avatar);
                 default:
