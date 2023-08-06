@@ -195,7 +195,7 @@ public class Client implements Runnable {
             try {
                 long st = System.currentTimeMillis();
                 update();
-                Thread.sleep(80 - (System.currentTimeMillis() - st));
+                Thread.sleep(800 - (System.currentTimeMillis() - st));
             } catch (Exception e) {
             }
         }

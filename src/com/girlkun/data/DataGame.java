@@ -18,9 +18,7 @@ import com.girlkun.network.session.ISession;
 import com.girlkun.network.io.Message;
 import com.girlkun.server.Manager;
 import com.girlkun.server.io.MySession;
-import com.girlkun.services.PlayerService;
 import com.girlkun.utils.Logger;
-import com.girlkun.utils.Util;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -28,6 +26,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class DataGame {
 
@@ -37,7 +36,7 @@ public class DataGame {
     public static byte vsItem = 80;
     public static int vsRes = 752011;
 
-    public static String LINK_IP_PORT = "NRO Legend:139.162.9.178:14445:0,0,0";
+    public static String LINK_IP_PORT = "Arriety:sv.arriety.com:14445:0";
     private static final String MOUNT_NUM = "733:1,734:2,735:3,743:4,744:5,746:6,795:7,849:8,897:9,920:10,1143:11,1141:15";
     public static final Map MAP_MOUNT_NUM = new HashMap();
 
@@ -65,8 +64,8 @@ public class DataGame {
             msg.writer().writeByte(0);
 
             long[] smtieuchuan = {1000L, 3000L, 15000L, 40000L, 90000L, 170000L, 340000L, 700000L,
-                1500000L, 15000000L, 150000000L, 1500000000L, 5000000000L, 10000000000L, 40000000000L,
-                50010000000L, 60010000000L, 70010000000L, 80010000000L, 100010000000L};
+                    1500000L, 15000000L, 150000000L, 1500000000L, 5000000000L, 10000000000L, 40000000000L,
+                    50010000000L, 60010000000L, 70010000000L, 80010000000L, 100010000000L};
             msg.writer().writeByte(smtieuchuan.length);
             for (int i = 0; i < smtieuchuan.length; i++) {
                 msg.writer().writeLong(smtieuchuan[i]);
@@ -168,7 +167,7 @@ public class DataGame {
                     msg.writer().writeByte(skillTemp.type);
                     msg.writer().writeShort(skillTemp.iconId);
                     msg.writer().writeUTF(skillTemp.damInfo);
-                    msg.writer().writeUTF("KAMII");
+                    msg.writer().writeUTF("Arriety");
                     if (skillTemp.id != 0) {
                         msg.writer().writeByte(skillTemp.skillss.size());
                         for (Skill skill : skillTemp.skillss) {
@@ -247,20 +246,15 @@ public class DataGame {
         } catch (Exception e) {
         }
     }
-
-    public static void effData(MySession session, int id, int... idtemp) {
-        if (id >= 205 && id <= 209) {
-            sendEffectTemplate(session, id);
-            return;
-        }
+public static void effData(MySession session, int id, int... idtemp) {
         int idT = id;
-        if (idtemp.length > 0 && idtemp[0] != 0) {
+        if(idtemp.length > 0 && idtemp[0] != 0){
             idT = idtemp[0];
         }
         Message msg;
         try {
             byte[] effData = FileIO.readFile("data/girlkun/effect/x" + session.zoomLevel + "/data/DataEffect_" + idT);
-            byte[] effImg = FileIO.readFile("data/girlkun/effect/x" + session.zoomLevel + "/img/ImgEffect_" + idT + ".png");
+            byte[] effImg = FileIO.readFile("data/girlkun/effect/x" + session.zoomLevel + "/img/ImgEffect_" + idT+".png");
             msg = new Message(-66);
             msg.writer().writeShort(id);
             msg.writer().writeInt(effData.length);
@@ -273,7 +267,6 @@ public class DataGame {
         } catch (Exception e) {
         }
     }
-
     public static void sendItemBGTemplate(MySession session, int id) {
         Message msg;
         try {
@@ -301,26 +294,6 @@ public class DataGame {
         }
     }
 
-//    public static void antiKeoRes(MySession session, short from, short to) {
-//        session.isRIcon = true;
-//        Message msg;
-//        try {
-//            for (int i = from; i < to; i++) {
-//                try {
-//                    byte[] icon = Util.randomImg();
-//                    msg = new Message(-67);
-//                    msg.writer().writeInt(i);
-//                    msg.writer().writeInt(icon.length);
-//                    msg.writer().write(icon);
-//                    session.doSendMessage(msg);
-//                    msg.cleanup();
-//                } catch (Exception ex) {
-//                }
-//            }
-//            session.disconnect();
-//        } catch (Exception e) {
-//        }
-//    }
     public static void sendIcon(MySession session, int id) {
         Message msg;
         try {
@@ -332,10 +305,6 @@ public class DataGame {
             session.sendMessage(msg);
             msg.cleanup();
         } catch (Exception e) {
-//            if (id > 11060) { // id check anti
-//                antiKeoRes(session,(short)11060,(short)30000); // gui anh tu 1->2000
-////                PlayerService.gI().banPlayer(session.player);
-//            }
         }
     }
 
@@ -352,6 +321,7 @@ public class DataGame {
         } catch (Exception e) {
         }
     }
+
 
     private static List<Integer> list = new ArrayList<>();
 

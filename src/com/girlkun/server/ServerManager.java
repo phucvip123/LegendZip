@@ -133,7 +133,7 @@ public class ServerManager {
             }
         }, "Update dai hoi vo thuat").start();
         try {
-            Thread.sleep(1);
+            Thread.sleep(10);
             BossManager.gI().loadBoss();
             Manager.MAPS.forEach(com.girlkun.models.map.Map::initBoss);
             
