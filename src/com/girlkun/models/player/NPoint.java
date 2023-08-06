@@ -181,12 +181,16 @@ public class NPoint {
         resetPoint();
 
         boolean foundItem921 = false;
+        boolean check = true;
         for (Item item : this.player.inventory.itemsBag) {
+            if(!check) break;
             if (item.isNotNullItem() && (item.template.id == 921)) {
-                if (!foundItem921 && this.player.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2) {
+                
+                if (!foundItem921 && this.player.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 && check) {
                     foundItem921 = true;
                     for (Item.ItemOption io : item.itemOptions) {
-                        switch (io.optionTemplate.id) {
+                        check = false;
+                        switch (io.optionTemplate.id) {                           
                             case 80: //HP+#%/30s
                                 this.tlHpHoi += io.param;
                                 break;
@@ -210,7 +214,7 @@ public class NPoint {
                                 break;
                             case 108: //#% Né đòn
                                 this.tlNeDon += io.param;
-                                break;
+                                break; 
                         }
 //                        System.out.println("Cộng chỉ số cấp 2");
                     }
@@ -219,9 +223,12 @@ public class NPoint {
         }
 
         boolean foundItem1155 = false;
+        check = true;
         for (Item item : this.player.inventory.itemsBag) {
+            if(!check) break;
             if (item.isNotNullItem() && (item.template.id == 1155)) {
-                if (!foundItem1155 && this.player.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3) {
+                if (!foundItem1155 && this.player.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3&&check) {
+                    check = false;
                     foundItem1155 = true;
                     for (Item.ItemOption io : item.itemOptions) {
                         switch (io.optionTemplate.id) {
@@ -250,14 +257,17 @@ public class NPoint {
                                 this.tlNeDon += io.param;
                                 break;
                         }
+                        break;
                     }
                 }
             }
         }
-
+        check =true;
         for (Item item : this.player.inventory.itemsBag) {
             if (item.isNotNullItem() && (item.template.id == 1156)) {
-                if (this.player.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA4) {
+                if(!check) break;
+                if (this.player.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA4 && check) {
+                    check = false;
                     for (Item.ItemOption io : item.itemOptions) {
                         switch (io.optionTemplate.id) {
                             case 80: //HP+#%/30s
@@ -285,6 +295,7 @@ public class NPoint {
                                 this.tlNeDon += io.param;
                                 break;
                         }
+                        break;
 //                        System.out.println("Cộng chỉ số cấp 2");
                     }
                 }

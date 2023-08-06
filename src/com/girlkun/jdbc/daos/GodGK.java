@@ -1525,13 +1525,13 @@ public class GodGK {
                     pet.nPoint.tiemNang = Long.parseLong(String.valueOf(dataArray.get(2)));
                     pet.nPoint.stamina = Short.parseShort(String.valueOf(dataArray.get(3)));
                     pet.nPoint.maxStamina = Short.parseShort(String.valueOf(dataArray.get(4)));
-                    pet.nPoint.hpg = Integer.parseInt(String.valueOf(dataArray.get(5)));
-                    pet.nPoint.mpg = Integer.parseInt(String.valueOf(dataArray.get(6)));
-                    pet.nPoint.dameg = Integer.parseInt(String.valueOf(dataArray.get(7)));
-                    pet.nPoint.defg = Integer.parseInt(String.valueOf(dataArray.get(8)));
+                    pet.nPoint.hpg = Double.parseDouble(String.valueOf(dataArray.get(5)));
+                    pet.nPoint.mpg = Double.parseDouble(String.valueOf(dataArray.get(6)));
+                    pet.nPoint.dameg = Double.parseDouble(String.valueOf(dataArray.get(7)));
+                    pet.nPoint.defg = Double.parseDouble(String.valueOf(dataArray.get(8)));
                     pet.nPoint.critg = Integer.parseInt(String.valueOf(dataArray.get(9)));
-                    int hp = Integer.parseInt(String.valueOf(dataArray.get(10)));
-                    int mp = Integer.parseInt(String.valueOf(dataArray.get(11)));
+                    double hp = Double.parseDouble(String.valueOf(dataArray.get(10)));
+                    double mp = Double.parseDouble(String.valueOf(dataArray.get(11)));
 
                     //data body
                     dataArray = (JSONArray) jv.parse(String.valueOf(petData.get(2)));

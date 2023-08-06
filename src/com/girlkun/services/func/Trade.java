@@ -183,7 +183,7 @@ public class Trade {
         }
         switch (item.template.type) {
             case 27: //
-                if (item.template.id != 457 && item.template.id == 590) {
+                if (item.template.id != 457 && item.template.id == 590 ) {
                     return true;
                 } else {
                     return false;
@@ -200,6 +200,7 @@ public class Trade {
             case 28: //cờ
             case 31: //bánh trung thu, bánh tết
             case 32: //giáp tập luyện
+
 
                 return true;
             default:
