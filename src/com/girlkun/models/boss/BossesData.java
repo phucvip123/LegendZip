@@ -497,6 +497,32 @@ public class BossesData {
             REST_1_M,
             new int[]{BossID.PIC, BossID.POC}
     );
+
+    public static final BossData NGO_KHONG = new BossData(
+            "Ngộ Không", //name
+            ConstPlayer.XAYDA, //gender
+            new short[]{462, 463, 464, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
+            100000, //dame
+            new double[]{5000000000L}, //hp
+            new int[]{178}, //map join
+            new int[][]{
+                    {Skill.GALICK, 2, 1000},
+                    {Skill.ANTOMIC, 2, 10000},},//skill //skill
+            new String[]{"|-1|Tao là Ngộ Khỉ",
+                    "|-2|Em chào đại ca!",
+                    "|-1|Ai thèm làm đại ca của mày?"
+            }, //text chat 1
+            new String[]{"|-1|Chết hết đi cho tao",
+                    "|-1|Tao sẽ giết hết bọn mày",
+                    "|-1|Hahaha",
+                    "|-1|Tao chỉ cần 10 phút để giết hết bọn mày",
+                    "|-1|Được rồi tao sẽ thổi bay hết bọn mày",
+                    "|-1|Muốn đùa thì thêm tí muối đi!",
+                    "|-2|Thằng này,tao nhịn mày lâu lắm rồi ấy nhá",
+                    "|-2|Coi thường nhau quá đấy",}, //text chat 2
+            new String[]{"|-1|Ôi bạn ơi ....ơi!!!"}, //text chat 3
+            REST_5_M //second rest
+    );
     //************************************************************************** Boss cell
 
     public static final BossData XEN_BO_HUNG_1 = new BossData(

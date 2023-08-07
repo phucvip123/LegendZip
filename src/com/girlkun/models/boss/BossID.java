@@ -40,6 +40,7 @@ public class BossID {
     public static final int XEN_CON_1 = -102;
 
     public static final int NGAI_DEM = -69;
+    public static final int NGO_KHONG = -696;
 
     public static final int TRUNG_UY_TRANG = -2_147_479_965;
     public static final int TRUNG_UY_XANH_LO = -2_147_479_964;

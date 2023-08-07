@@ -1024,7 +1024,7 @@ public class NpcFactory {
             @Override
             public void confirmMenu(Player player, int select) {
                 if (canOpenNpc(player)) {
-                    if (this.mapId == 26) {
+                    if (this.mapId == 26 || this.mapId == 178) {
                         if (player.iDMark.isBaseMenu()) {
                             switch (select) {
                                 case 0:
@@ -1522,8 +1522,8 @@ public class NpcFactory {
                         if (player.iDMark.isBaseMenu()) {
                             switch (select) {
                                 case 0:
-                                    this.createOtherMenu(player, ConstNpc.HUNG_VUONG, "|2|Hoa với thỏi vàng của nhà người đâu???\nCó 3 cách tặng quà cho Hùng Vương để nhận vật phẩm hiếm\nCách 1: Cần 40 thỏi vàng để đổi cải trang vĩnh viễn cực xịn\nCách 2: Cần x99 hoa + 1 Tỷ vàng\nCách 3: đến map sự kiện săn boss Ngộ Không kiếm dưa hấu\nCần x20 dưa hấu + 200tr vàng", "Tặng thỏi vàng\nNhận cải trang vĩnh viễn",
-                                            "Tặng Hoa Thường", "Tặng Dưa hấu", "đóng");
+                                    this.createOtherMenu(player, ConstNpc.HUNG_VUONG, "|2|Hoa với thỏi vàng của nhà người đâu???\nCó 3 cách tặng quà cho Hùng Vương để nhận vật phẩm hiếm\nCách 1: Cần 40 thỏi vàng để đổi cải trang cực xịn\nCách 2: Cần x99 hoa + 1 Tỷ vàng + 5000 hồng ngọc\nCách 3: đến map sự kiện săn boss Ngộ Không kiếm dưa hấu\nCần x20 dưa hấu + 200tr vàng", "Tặng thỏi vàng\nNhận cải trang xịn",
+                                            "Tặng Hoa Thường", "Tặng Dưa hấu","Cũng là tặng Dưa hấu", "đóng");
                                     break;
                                 case 1: 
                                     ChangeMapService.gI().changeMapBySpaceShip(player, 178, -1, 354);
@@ -1549,24 +1549,27 @@ public class NpcFactory {
                                         InventoryServiceNew.gI().subQuantityItemsBag(player, honLinhThu1, 40);
                                         Service.gI().sendMoney(player);
                                         Item trungLinhThu = ItemService.gI().createNewItem((short) 860);
+                                        if(Util.nextInt(0, 100)<=98){
+                                            trungLinhThu.itemOptions.add(new Item.ItemOption(93, Util.nextInt(1,10)));
+                                        }
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(49, new Random().nextInt(35) + 50));
+
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(117, new Random().nextInt(27) + 24));
+
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(148, new Random().nextInt(20) + 30));
                                         
-                                        trungLinhThu.itemOptions.add(new Item.ItemOption(49, new Random().nextInt(35) + 10));
-
-                                        trungLinhThu.itemOptions.add(new Item.ItemOption(117, new Random().nextInt(27) + 12));
-
-                                        trungLinhThu.itemOptions.add(new Item.ItemOption(148, new Random().nextInt(20) + 10));
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(77, new Random().nextInt(65) + 45));   
                                         
-                                        trungLinhThu.itemOptions.add(new Item.ItemOption(77, new Random().nextInt(65) + 15));   
-                                        
-                                        trungLinhThu.itemOptions.add(new Item.ItemOption(103, new Random().nextInt(65) + 15));
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(103, new Random().nextInt(65) + 45));
 
-                                        trungLinhThu.itemOptions.add(new Item.ItemOption(14, new Random().nextInt(20) + 5));
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(14, new Random().nextInt(20) + 20));
 
-                                        trungLinhThu.itemOptions.add(new Item.ItemOption(5, new Random().nextInt(30) + 5));
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(5, new Random().nextInt(30) + 20));
 
                                         InventoryServiceNew.gI().addItemBag(player, trungLinhThu);
                                         InventoryServiceNew.gI().sendItemBags(player);
-                                        this.npcChat(player, "Bạn nhận được cải trang mị nương");
+                                        this.npcChat(player, "Bạn nhận được cải trang mị nương và 1 điểm sự kiện");
+                                        player.inventory.event++;
                                         ServerNotify.gI().notify("Chúc mừng " + player.name + " vừa nhận được cải trang mị nương" + " tại NPC Hùng Vương");
                              break;
                                     }
@@ -1579,34 +1582,44 @@ public class NpcFactory {
                                     }
                                     if (honLinhThu == null || honLinhThu.quantity < 99) {
                                         this.npcChat(player, "Bạn không đủ 99 bông hồng");
-                                    } else if (player.inventory.gold < 1_000_000_000) {
+                                    } else if(player.inventory.ruby <10000){
+                                        this.npcChat(player, "Bạn không đủ 10k hồng ngọc");
+                                    }
+                                    else if (player.inventory.gold < 1_000_000_000) {
                                         this.npcChat(player, "Bạn không đủ 1 Tỷ vàng");
                                     } else if (InventoryServiceNew.gI().getCountEmptyBag(player) == 1_000_000_000) {
                                         this.npcChat(player, "Hành trang của bạn không đủ chỗ trống");
                                     } else {
                                         player.inventory.gold -= 1_000_000_000;
+                                        player.inventory.ruby -= 10000;
                                         InventoryServiceNew.gI().subQuantityItemsBag(player, honLinhThu, 99);
                                         Service.gI().sendMoney(player);
-                                        Item trungLinhThu = ItemService.gI().createNewItem((short) 421);
+                                        player.inventory.event += 5;
+                                        if(Util.nextInt(0,100)<50){
+                                            short k = (short) Util.nextInt(0,1);
+                                            Item trungLinhThu = ItemService.gI().createNewItem((short) (421 + k));
                                         
-                                    trungLinhThu.itemOptions.add(new Item.ItemOption(49, new Random().nextInt(43) + 2));
-                                    
-                                    trungLinhThu.itemOptions.add(new Item.ItemOption(77, new Random().nextInt(65) + 2));   
-                                    
-                                    trungLinhThu.itemOptions.add(new Item.ItemOption(103, new Random().nextInt(65) + 2));
-
-                                    trungLinhThu.itemOptions.add(new Item.ItemOption(14, new Random().nextInt(10) + 2));
-
-                                    trungLinhThu.itemOptions.add(new Item.ItemOption(5, new Random().nextInt(30) + 5));
-
-                                    trungLinhThu.itemOptions.add(new Item.ItemOption(93, new Random().nextInt(30) + 1));   
-                                        InventoryServiceNew.gI().addItemBag(player, trungLinhThu);
-                                        InventoryServiceNew.gI().sendItemBags(player);
-                                        this.npcChat(player, "Bạn nhận được 1 cải trang sơn tinh");
-                             break;
+                                            trungLinhThu.itemOptions.add(new Item.ItemOption(49, new Random().nextInt(43) + 50));
+                                            trungLinhThu.itemOptions.add(new Item.ItemOption(77, new Random().nextInt(65) + 40));   
+                                            trungLinhThu.itemOptions.add(new Item.ItemOption(103, new Random().nextInt(65) + 40));
+                                            trungLinhThu.itemOptions.add(new Item.ItemOption(14, new Random().nextInt(10) + 20));
+                                            trungLinhThu.itemOptions.add(new Item.ItemOption(5, new Random().nextInt(30) + 50));
+                                            if(Util.nextInt(0,100)<=98)
+                                                trungLinhThu.itemOptions.add(new Item.ItemOption(93, Util.nextInt(1,10)));   
+                                            InventoryServiceNew.gI().addItemBag(player, trungLinhThu);
+                                            InventoryServiceNew.gI().sendItemBags(player);
+                                            if(k==0) this.npcChat(player, "Bạn nhận được 1 cải trang sơn tinh và 5 điểm sự kiện");
+                                            else this.npcChat(player, "Bạn nhận được 1 cải trang thủy tinh và 5 điểm sự kiện");
+                                        }else{
+                                            Item trungLinhThu = ItemService.gI().createNewItem((short) Util.nextInt(14,20));
+                                            InventoryServiceNew.gI().addItemBag(player, trungLinhThu);
+                                            InventoryServiceNew.gI().sendItemBags(player);
+                                            this.npcChat(player, "Bạn nhận được ngọc rồng và 5 điểm sự kiện");
+                                        }
+                                        break;
                                     }
                                 case 2:  
-                                                                        Item honLinhThu2 = null;
+                                    Item honLinhThu2 = null;
                                     try {
                                         honLinhThu2 = InventoryServiceNew.gI().findItemBag(player, 569);
                                     } catch (Exception e) {
@@ -1620,27 +1633,60 @@ public class NpcFactory {
                                         this.npcChat(player, "Hành trang của bạn không đủ chỗ trống");
                                     } else {
                                         player.inventory.gold -= 200_000_000;
+                                        player.inventory.event += 50;
+                                        int id = 544 + player.gender;
                                         InventoryServiceNew.gI().subQuantityItemsBag(player, honLinhThu2, 16);
                                         Service.gI().sendMoney(player);
-                                        Item trungLinhThu = ItemService.gI().createNewItem((short) 2069);
+                                        Item trungLinhThu = ItemService.gI().createNewItem((short) id);
                                         
-                                        trungLinhThu.itemOptions.add(new Item.ItemOption(49, new Random().nextInt(22) + 1));
-                                        
-                                        trungLinhThu.itemOptions.add(new Item.ItemOption(77, new Random().nextInt(25) + 1));   
-                                        
-                                        trungLinhThu.itemOptions.add(new Item.ItemOption(103, new Random().nextInt(25) + 1));
-
-                                        trungLinhThu.itemOptions.add(new Item.ItemOption(93, new Random().nextInt(6) + 1));   
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(49, new Random().nextInt(43) + 75));
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(77, new Random().nextInt(65) + 60));   
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(103, new Random().nextInt(65) + 60));
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(14, new Random().nextInt(10) + 30));
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(5, new Random().nextInt(30) + 75));
+                                        if(Util.nextInt(0,100)<=98) trungLinhThu.itemOptions.add(new Item.ItemOption(93, Util.nextInt(1,10)));   
                                         InventoryServiceNew.gI().addItemBag(player, trungLinhThu);
                                         InventoryServiceNew.gI().sendItemBags(player);
-                                        this.npcChat(player, "Bạn nhận được cánh bướm");
-                                        ServerNotify.gI().notify("Chúc mừng " + player.name + " vừa nhận được cánh bướm" + " khi tặng dưa hấu cho Hùng Vương");
+                                        this.npcChat(player, "Bạn nhận được cải trang tôn ngộ không và 50 điểm sự kiện");
+                                        ServerNotify.gI().notify("Chúc mừng " + player.name + " vừa nhận cải trang tôn ngộ không" + " khi tặng dưa hấu cho Hùng Vương");
                                         break;
                                     }
 
-                            //    case 3:
-                            //        ChangeMapService.gI().changeMapBySpaceShip(player, 178, -1, 354);
-                            //        break;
+                               case 3:
+                                   Item honLinhThu3 = null;
+                                    try {
+                                        honLinhThu3 = InventoryServiceNew.gI().findItemBag(player, 569);
+                                    } catch (Exception e) {
+//                                        throw new RuntimeException(e);
+                                    }
+                                    if (honLinhThu3 == null || honLinhThu3.quantity < 16) {
+                                        this.npcChat(player, "Bạn không đủ 49 Dưa hấu");
+                                    } else if (player.inventory.gold < 200_000_000) {
+                                        this.npcChat(player, "Bạn không 200tr vàng");
+                                    } else if (InventoryServiceNew.gI().getCountEmptyBag(player) == 200_000_000) {
+                                        this.npcChat(player, "Hành trang của bạn không đủ chỗ trống");
+                                    } else {
+                                        player.inventory.gold -= 200_000_000;
+                                        player.inventory.event += 50;
+
+                                        InventoryServiceNew.gI().subQuantityItemsBag(player, honLinhThu3, 16);
+                                        Service.gI().sendMoney(player);
+                                        Item trungLinhThu = ItemService.gI().createNewItem((short) 547);
+                                        
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(49, new Random().nextInt(43) + 75));
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(77, new Random().nextInt(65) + 60));   
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(103, new Random().nextInt(65) + 60));
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(14, new Random().nextInt(10) + 30));
+                                        trungLinhThu.itemOptions.add(new Item.ItemOption(5, new Random().nextInt(30) + 75));
+                                        if(Util.nextInt(0,100)<=98) trungLinhThu.itemOptions.add(new Item.ItemOption(93, Util.nextInt(1,10)));   
+                                        InventoryServiceNew.gI().addItemBag(player, trungLinhThu);
+                                        InventoryServiceNew.gI().sendItemBags(player);
+                                        this.npcChat(player, "Bạn nhận được cải trang tôn ngộ không dành cho đệ tử và 50 điểm sự kiện");
+                                        ServerNotify.gI().notify("Chúc mừng " + player.name + " vừa nhận cải trang tôn ngộ không" + " khi tặng dưa hấu cho Hùng Vương");
+                                        break;
+                                    }
+                                   break;
+                                case 4: break;
                             }
                             }
                         }
@@ -3559,7 +3605,7 @@ public class NpcFactory {
                 if (canOpenNpc(player)) {
                     createOtherMenu(player, ConstNpc.BASE_MENU,
                             "|2|Ta Vừa Hắc Mắp Xêm Được Tóp Của Toàn Server\b|7|Người Muốn Xem Tóp Gì?",
-                            "Tóp Sức Mạnh", "Top Nhiệm Vụ", "Top Pvp", "Tóp Ngũ Hành Sơn","Top Sức đánh", "Đóng");
+                            "Tóp Sức Mạnh", "Top Nhiệm Vụ", "Top Pvp", "Tóp Ngũ Hành Sơn","Top sự kiện", "Đóng");
                 }
             }
 
@@ -3587,7 +3633,7 @@ public class NpcFactory {
                                         break;
                                     }
                                     if (select == 4) {
-                                        Service.gI().showListTop(player, Manager.topSD);
+                                        Service.gI().showListTop(player, Manager.topSK);
                                         break;
                                     }
                                     break;

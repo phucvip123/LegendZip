@@ -12,6 +12,7 @@ import com.girlkun.models.boss.list_boss.NgucTu.CoolerGold;
 import com.girlkun.models.boss.list_boss.Doraemon.Doraemon;
 import com.girlkun.models.boss.list_boss.FideBack.Kingcold;
 import com.girlkun.models.boss.list_boss.Mabu;
+import com.girlkun.models.boss.list_boss.NgoKhong;
 import com.girlkun.models.boss.list_boss.SuperXen;
 import com.girlkun.models.boss.list_boss.NgucTu.Cumber;
 import com.girlkun.models.boss.list_boss.cell.Xencon;
@@ -144,7 +145,7 @@ public class BossManager implements Runnable {
             this.createBoss(BossID.ANDROID_14);
             this.createBoss(BossID.SUPER_ANDROID_17); 
             this.createBoss(BossID.MABU);
-            this.createBoss(BossID.NGAI_DEM);
+            this.createBoss(BossID.NGO_KHONG);
             for (Byte i = 0; i < 10; i++) {
                 this.createBoss(BossID.AN_TROM - i);
             }
@@ -322,6 +323,8 @@ public class BossManager implements Runnable {
                     return new Broly();
                 case BossID.GOHAN_NN:
                     return new gohanNN();
+                case BossID.NGO_KHONG:
+                    return new NgoKhong();
                 default:
                     return null;
             }
