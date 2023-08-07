@@ -1671,7 +1671,7 @@ public class NpcFactory {
 
                                         InventoryServiceNew.gI().subQuantityItemsBag(player, honLinhThu3, 16);
                                         Service.gI().sendMoney(player);
-                                        Item trungLinhThu = ItemService.gI().createNewItem((short) 547);
+                                        Item trungLinhThu = ItemService.gI().createNewItem((short) (547 + Util.nextInt(0,1)));
                                         
                                         trungLinhThu.itemOptions.add(new Item.ItemOption(49, new Random().nextInt(43) + 75));
                                         trungLinhThu.itemOptions.add(new Item.ItemOption(77, new Random().nextInt(65) + 60));   
@@ -1681,8 +1681,8 @@ public class NpcFactory {
                                         if(Util.nextInt(0,100)<=98) trungLinhThu.itemOptions.add(new Item.ItemOption(93, Util.nextInt(1,10)));   
                                         InventoryServiceNew.gI().addItemBag(player, trungLinhThu);
                                         InventoryServiceNew.gI().sendItemBags(player);
-                                        this.npcChat(player, "Bạn nhận được cải trang tôn ngộ không dành cho đệ tử và 50 điểm sự kiện");
-                                        ServerNotify.gI().notify("Chúc mừng " + player.name + " vừa nhận cải trang tôn ngộ không" + " khi tặng dưa hấu cho Hùng Vương");
+                                        this.npcChat(player, "Bạn nhận được cải trang dành cho đệ tử và 50 điểm sự kiện");
+                                        ServerNotify.gI().notify("Chúc mừng " + player.name + " vừa nhận cải trang dành cho đệ tử" + " khi tặng dưa hấu cho Hùng Vương");
                                         break;
                                     }
                                    break;
