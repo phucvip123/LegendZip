@@ -186,7 +186,7 @@ public class Mob {
         }
         tiemNang = (int) pl.nPoint.calSucManhTiemNang(tiemNang);
         if (pl.zone.map.mapId == 122 || pl.zone.map.mapId == 123 || pl.zone.map.mapId == 124 || pl.zone.map.mapId == 135 || pl.zone.map.mapId == 136 || pl.zone.map.mapId == 137 || pl.zone.map.mapId == 138 ) {
-            tiemNang *= 200;
+            tiemNang *= 10;
         }
         return tiemNang;
     }
@@ -486,28 +486,29 @@ public class Mob {
 //        nplayer
         List<ItemMap> itemReward = new ArrayList<>();
         try {
-//            if ((!player.isPet && player.getSession().actived && player.setClothes.setDHD == 5) || (player.isPet && ((Pet) player).master.getSession().actived && ((Pet) player).setClothes.setDHD == 5)) {
-//                byte random = 1;
-//                if (Util.isTrue(5, 100)) {
-//                    random = 2;
-//                }
-//                Item i = Manager.RUBY_REWARDS.get(Util.nextInt(0, Manager.RUBY_REWARDS.size() - 1));
-//                i.quantity = random;
-//                InventoryServiceNew.gI().addItemBag(player, i);
-//                InventoryServiceNew.gI().sendItemBags(player);
-//                Service.gI().sendThongBao(player, "Bạn vừa nhận được " + random + " hồng ngọc");
-//            }
+           if ((!player.isPet && player.getSession().actived && player.setClothes.setDHD == 5) || (player.isPet && ((Pet) player).master.getSession().actived && ((Pet) player).setClothes.setDHD == 5)) {
+               byte random = 1;
+               if (Util.isTrue(5, 100)) {
+                   random = 2;
+               }
+               Item i = Manager.RUBY_REWARDS.get(Util.nextInt(0, Manager.RUBY_REWARDS.size() - 1));
+               i.quantity = random;
+               InventoryServiceNew.gI().addItemBag(player, i);
+               InventoryServiceNew.gI().sendItemBags(player);
+               Service.gI().sendThongBao(player, "Bạn vừa nhận được " + random + " hồng ngọc");
+           }
             if (Util.isTrue(60.0f, 100)) {
                 if (player.setClothes.godClothes && MapService.gI().isMapCold(player.zone.map)) {
                     ArrietyDrop.DropItemReWard(player, ArrietyDrop.list_thuc_an[Util.nextInt(0, (ArrietyDrop.list_thuc_an.length - 1))], 1, this.location.x, this.location.y);
                 }
             } else {
                 //Service.getInstance().sendThongBao(player, "Con quái này không có rồi!");
-            }//            if (Util.isTrue(1.0f, 100)) {
-            //                if (player.setClothes.thienSuClothes && MapService.gI().isMapCold(player.zone.map)) {
-            //                    ArrietyDrop.DropItemReWardDoHuyDietKichHoat(player, 1, this.location.x, this.location.y);
-            //                }
-            //            } 
+            }
+                    //    if (Util.isTrue(1.0f, 100)) {
+                    //        if (player.setClothes.thienSuClothers && MapService.gI().isMapCold(player.zone.map)) {
+                    //            ArrietyDrop.DropItemReWardDoHuyDietKichHoat(player, 1, this.location.x, this.location.y);
+                    //        }
+                    //    } 
 
             itemReward = this.getItemMobReward(player, this.location.x + Util.nextInt(-10, 10),
                     this.zone.map.yPhysicInTop(this.location.x, this.location.y));
@@ -584,7 +585,7 @@ public class Mob {
         if (Util.isTrue(10, 100)) {    //up bí kíp
             list.add(new ItemMap(zone, 2036, 1, x, player.location.y, player.id));}}
         if (player.setClothes.setGod() && this.zone.map.mapId>=105 && this.zone.map.mapId<=111){
-        if (Util.isTrue(10, 100)) {    //up bí kíp
+        if (Util.isTrue(10, 100)&&player.setClothes.setGod14()) {    //up bí kíp
             list.add(new ItemMap(zone, Util.nextInt(663,667), 1, x, player.location.y, player.id));}
         }
         if (player.setClothes.setGod14() && this.zone.map.mapId== 155){

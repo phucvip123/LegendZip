@@ -942,11 +942,11 @@ public class SkillService {
             if (miss) {
                 dameHit = 0;
             }
-            // if (mob.isSieuQuai()) {
-            //     if (dameHit > mob.point.maxHp / 10) {
-            //         dameHit = mob.point.maxHp / 10;
-            //     }
-            // }
+            if (mob.isSieuQuai()) {
+                if (dameHit > mob.point.maxHp / 10) {
+                    dameHit = mob.point.maxHp / 10;
+                }
+            }
             hutHPMP(plAtt, dameHit, true);
             sendPlayerAttackMob(plAtt, mob);
             mob.injured(plAtt, dameHit, dieWhenHpFull);

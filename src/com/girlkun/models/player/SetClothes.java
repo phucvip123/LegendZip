@@ -7,6 +7,7 @@ public class SetClothes {
 
     private Player player;
     private boolean huydietClothers;
+    private boolean thienSuClothers;
 
     public SetClothes(Player player) {
         this.player = player;
@@ -154,7 +155,7 @@ public class SetClothes {
        }
     
     // check set huy diet
-             public boolean setGod14(){
+    public boolean setGod14(){
         for (int i = 0; i < 6; i++) {
             Item item = this.player.inventory.itemsBody.get(i);
             if (item.isNotNullItem()) {

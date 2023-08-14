@@ -346,8 +346,8 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
         if (this.zone.map.mapId == 140 || MapService.gI().isMapMaBu(this.zone.map.mapId) || MapService.gI().isMapBlackBallWar(this.zone.map.mapId) || MapService.gI().isMapBanDoKhoBau(this.zone.map.mapId) || MapService.gI().isnguhs(this.zone.map.mapId)) {
             return;
         }
-        ServerNotify.gI().notify("BOSS " + this.name + " vừa xuất hiện tại " + this.zone.map.mapName  + this.zone.zoneId + " (" + this.zone.map.mapId + ")" + "");
-        //ServerNotify.gI().notify("BOSS " + this.name + " vừa xuất hiện tại " + this.zone.map.mapName);
+        //ServerNotify.gI().notify("BOSS " + this.name + " vừa xuất hiện tại " + this.zone.map.mapName  + this.zone.zoneId + " (" + this.zone.map.mapId + ")" + "");
+        ServerNotify.gI().notify("BOSS " + this.name + " vừa xuất hiện tại " + this.zone.map.mapName);
 
     }
     public void notifyBoss(Boss boss){

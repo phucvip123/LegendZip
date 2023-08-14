@@ -3139,12 +3139,13 @@ public class NpcFactory {
                             if (select == 0) {
                                 NpcService.gI().createTutorial(player, this.avartar, ConstNpc.HUONG_DAN_BLACK_BALL_WAR);
                             } else if (select == 1) {
-//                                if (!player.getSession().actived) {
-//                                    Service.gI().sendThongBao(player, "Vui lòng kích hoạt tài khoản để sử dụng chức năng này");
-//
-//                                } else
-                                player.iDMark.setTypeChangeMap(ConstMap.CHANGE_BLACK_BALL);
-                                ChangeMapService.gI().openChangeMapTab(player);
+                               if (!player.getSession().actived) {
+                                   Service.gI().sendThongBao(player, "Vui lòng kích hoạt tài khoản để sử dụng chức năng này");
+
+                               } else{
+                                    player.iDMark.setTypeChangeMap(ConstMap.CHANGE_BLACK_BALL);
+                                    ChangeMapService.gI().openChangeMapTab(player);
+                                }
                             }
                             break;
                         case ConstNpc.MENU_NOT_OPEN_BDW:

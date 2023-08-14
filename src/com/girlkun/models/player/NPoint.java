@@ -1268,7 +1268,7 @@ public class NPoint {
     }
 
     public long calSubTNSM(long tiemNang) {
-        tiemNang /=5;
+        tiemNang /=10;
         if (power >= 110000000000L) {
             tiemNang /= 1000;
         } else if (power >= 100000000000L) {

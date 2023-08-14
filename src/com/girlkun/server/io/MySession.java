@@ -180,7 +180,7 @@ public class MySession extends Session {
                         player.pet.nPoint.setHp(player.pet.nPoint.hp);
                         player.pet.nPoint.setMp(player.pet.nPoint.mp);
                     }
-
+                    
                     player.setSession(this);
                     Client.gI().put(player);
                     this.player = player;
