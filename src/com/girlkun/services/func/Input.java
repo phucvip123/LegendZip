@@ -355,38 +355,38 @@ public class Input {
                     NapThe.SendCard(player, LOAI_THE, MENH_GIA, text[0], text[1]);
                     break;
                 case QUY_DOI_COIN:
-                    int goldTrade = Integer.parseInt(text[0]);
-                    int tlquydoi = 5;
-                    int coindoi = (goldTrade * 1000) / tlquydoi;
+                    int goldTrade = Integer.parseInt(text[0])/1000;
+                    int tlquydoi = 3;
+                    int coindoi = (goldTrade * 1000);
                     if (goldTrade <= 0 || goldTrade >= 5000) {
-                        Service.gI().sendThongBao(player, "Quá giới hạn mỗi lần chỉ đổi được\n tối đa 500 TV");
-                    } else if (player.getSession().coinBar >= coindoi) {
-                        PlayerDAO.subcoinBar(player, coindoi);
-                        Item thoiVang = ItemService.gI().createNewItem((short) 457, goldTrade*tlquydoi);// x3
+                        Service.gI().sendThongBao(player, "Quá giới hạn mỗi lần chỉ đổi được\n tối đa 5000 TV");
+                    } else if (player.getSession().vnd >= coindoi) {
+                        PlayerDAO.subVnd(player, coindoi);
+                        Item thoiVang = ItemService.gI().createNewItem((short) 457, goldTrade*tlquydoi);
                         InventoryServiceNew.gI().addItemBag(player, thoiVang);
                         InventoryServiceNew.gI().sendItemBags(player);
                         Service.gI().sendThongBao(player, "bạn nhận được " + goldTrade*tlquydoi
                                 + " " + thoiVang.template.name);
                     } else {
-                        Service.gI().sendThongBao(player, "Số tiền của bạn là " + player.getSession().coinBar + " không đủ để quy "
-                                + " đổi " + goldTrade + " thỏi vàng " + " " + "bạn cần thêm" + (coindoi - player.getSession().coinBar));
+                        Service.gI().sendThongBao(player, "Số tiền của bạn là " + player.getSession().vnd + " không đủ để quy "
+                                + " đổi " + goldTrade + " thỏi vàng " + " " + "bạn cần thêm" + (coindoi - player.getSession().vnd));
                     }
                     break;
                 case QUY_DOI_HONG_NGOC:
                     int RubyTrade = Integer.parseInt(text[0]);
                     int tlTrade = 5;
-                    if (RubyTrade <= 0 || RubyTrade >= 100000) {
-                        Service.gI().sendThongBao(player, "Quá giới hạn mỗi lần chỉ được tối đa 100000");
-                    } else if (player.getSession().coinBar >= RubyTrade) {
-                        PlayerDAO.subcoinBar(player, RubyTrade);
+                    if (RubyTrade <= 0 || RubyTrade >= 1000000) {
+                        Service.gI().sendThongBao(player, "Quá giới hạn mỗi lần chỉ được tối đa 1000000");
+                    } else if (player.getSession().vnd >= RubyTrade) {
+                        PlayerDAO.subVnd(player, RubyTrade);
                         player.inventory.ruby += RubyTrade*tlTrade;
                         PlayerService.gI().sendInfoHpMpMoney(player);
                         InventoryServiceNew.gI().sendItemBags(player);
                         Service.gI().sendThongBao(player, "bạn nhận được " + RubyTrade*tlTrade
                                 + " Hồng Ngọc");
                     } else {
-                        Service.gI().sendThongBao(player, "Số tiền của bạn là " + player.getSession().coinBar + " không đủ để quy "
-                                + " đổi " + RubyTrade + " Hồng Ngọc " + " " + "bạn cần thêm" + (RubyTrade - player.getSession().coinBar));
+                        Service.gI().sendThongBao(player, "Số tiền của bạn là " + player.getSession().vnd + " không đủ để quy "
+                                + " đổi " + RubyTrade + " Hồng Ngọc " + " " + "bạn cần thêm" + (RubyTrade - player.getSession().vnd));
                     }
                     break;
                 case SEND_ITEM:
@@ -602,24 +602,12 @@ public class Input {
 
     public void createFormQDTV(Player pl) {
 
-        createForm(pl, QUY_DOI_COIN, "Quy đổi thỏi vàng, giới hạn đổi không quá 500 "
-                + "\n10.000 Vnd = 30 Thỏi vàng "
-                + "\n20.000 Vnd = 60 Thỏi vàng "
-                + "\n30.000 Vnd = 250 Thỏi vàng "
-                + "\n100.000 Vnd = 500 Thỏi vàng "
-                + "\n200.000 Vnd = 1000 Thỏi vàng "
-                + "\n500.000 Vnd = 2500 Thỏi vàng", new SubInput("Nhập số lượng muốn đổi", NUMERIC));
+        createForm(pl, QUY_DOI_COIN, "Tỉ lệ quy đổi thỏi vàng là x3 (100k được 300tv)", new SubInput("Nhập số lượng muốn đổi", NUMERIC));
     }
 
     public void createFormQDHN(Player pl) {
 
-        createForm(pl, QUY_DOI_HONG_NGOC, "Quy đổi hồng ngọc"
-                + "\n10.000 Vnd = 10000 Hồng Ngọc "
-                + "\n20.000 Vnd = 20000 Hồng Ngọc "
-                + "\n50.000 Vnd = 50000 Hồng Ngọc "
-                + "\n100.000 Vnd = 100000 Hồng Ngọc "
-                + "\n200.000 Vnd = 200000 Hồng Ngọc "
-                + "\n500.000 Vnd = 500000 Hồng Ngọc",
+        createForm(pl, QUY_DOI_HONG_NGOC, "Tỉ lệ quy đổi hồng ngọc là x5",
                 new SubInput("Nhập số lượng muốn đổi", NUMERIC));
     }
 

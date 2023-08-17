@@ -103,10 +103,10 @@ public class Manager {
             + "FROM player\n"
             + "ORDER BY sd DESC\n"
             + "LIMIT 20;";
-    public static final String queryTopHP = "SELECT id, CAST( split_str(data_point,',',6) AS UNSIGNED) AS hp FROM player ORDER BY CAST( split_str(data_point,',',6)  AS UNSIGNED) DESC LIMIT 20;";
-    public static final String queryTopKI = "SELECT id, CAST( split_str(data_point,',',7) AS UNSIGNED) AS ki FROM player ORDER BY CAST( split_str(data_point,',',7)  AS UNSIGNED) DESC LIMIT 20;";
-    public static final String queryTopNV = "SELECT id, CAST( split_str(split_str(data_task,',',1),'[',2)  AS UNSIGNED) AS nv FROM player ORDER BY CAST( split_str(split_str(data_task,',',1),'[',2)  AS UNSIGNED) DESC, CAST(split_str(data_task,',',2)  AS UNSIGNED) DESC, CAST( split_str(data_point,',',2) AS UNSIGNED) DESC LIMIT 50;";
-    public static final String queryTopSK = "SELECT id, CAST( split_str( data_inventory,',',5)  AS UNSIGNED) AS event FROM player ORDER BY CAST( split_str( data_inventory,',',5)  AS UNSIGNED) DESC LIMIT 20;";
+    public static final String queryTopHP = "SELECT id, CAST( SUBSTRING_INDEX(data_point,',',6) AS UNSIGNED) AS hp FROM player ORDER BY CAST( SUBSTRING_INDEX(data_point,',',6)  AS UNSIGNED) DESC LIMIT 20;";
+    public static final String queryTopKI = "SELECT id, CAST( SUBSTRING_INDEX(data_point,',',7) AS UNSIGNED) AS ki FROM player ORDER BY CAST( split_str(data_point,',',7)  AS UNSIGNED) DESC LIMIT 20;";
+    public static final String queryTopNV = "SELECT id,  CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data_task, ',', 1), '[', -1) AS UNSIGNED) AS nv FROM player ORDER BY nv DESC, CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data_task, ',', 2), ',', -1) AS UNSIGNED) DESC LIMIT 50;";
+    public static final String queryTopSK = "SELECT id, CAST( SUBSTRING_INDEX(SUBSTRING_INDEX( data_inventory,',',5),',',-1)  AS UNSIGNED) AS event FROM player ORDER BY event DESC LIMIT 20;";
     public static final String queryTopPVP = "SELECT id, CAST( pointPvp AS UNSIGNED) AS pointPvp FROM player ORDER BY CAST( pointPvp AS UNSIGNED) DESC LIMIT 50;";
     public static final String queryTopNHS = "SELECT id, CAST( NguHanhSonPoint AS UNSIGNED) AS nhs FROM player ORDER BY CAST( NguHanhSonPoint AS UNSIGNED) DESC LIMIT 20;";
     public static final String queryTopKhiGas = "SELECT id, CAST( khi_gas AS UNSIGNED) AS khi_gas FROM player ORDER BY CAST( khi_gas AS UNSIGNED) DESC LIMIT 50;";
@@ -166,7 +166,7 @@ public class Manager {
     public static List<TOP> realTopSieuHang(Player pl) {
         List<TOP> tops = new ArrayList<>();
         try {
-            GirlkunResultSet rs = GirlkunDB.executeQuery("SELECT id, CAST( split_str(data_point,',',18) AS UNSIGNED) AS rank FROM player WHERE CAST( split_str(data_point,',',18) AS UNSIGNED) <= " + pl.rankSieuHang + " ORDER BY CAST( split_str(data_point,',',18) AS UNSIGNED) ASC LIMIT 10");
+            GirlkunResultSet rs = GirlkunDB.executeQuery("SELECT id, CAST( SUBSTRING_INDEX(data_point,',',18) AS UNSIGNED) AS rank FROM player WHERE CAST( SUBSTRING_INDEX(data_point,',',18) AS UNSIGNED) <= " + pl.rankSieuHang + " ORDER BY CAST( SUBSTRING_INDEX(data_point,',',18) AS UNSIGNED) ASC LIMIT 10");
             while (rs.next()) {
                 long rank = Long.parseLong(rs.getString("rank"));
                 if (Math.abs(rank - pl.rankSieuHang) <= 10) {

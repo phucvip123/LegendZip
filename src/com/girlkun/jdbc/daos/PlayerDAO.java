@@ -862,6 +862,26 @@ public class PlayerDAO {
         }
         return true;
     }
+    public static boolean subVnd(Player player, int num) {
+        PreparedStatement ps = null;
+        try (Connection con = GirlkunDB.getConnection();) {
+            ps = con.prepareStatement("update account set vnd = (vnd - ?), active = ? where id = ?");
+            ps.setInt(1, num);
+            ps.setInt(2, player.getSession().actived ? 1 : 0);
+            ps.setInt(3, player.getSession().userId);
+            ps.executeUpdate();
+            ps.close();
+            player.getSession().vnd -= num;
+        } catch (Exception e) {
+            Logger.logException(PlayerDAO.class, e, "Lỗi update vnd " + player.name);
+            return false;
+        } finally {
+        }
+        if (num > 1000) {
+            insertHistoryGold(player, num);
+        }
+        return true;
+    }
 
     public static boolean setIs_gift_box(Player player) {
         PreparedStatement ps = null;

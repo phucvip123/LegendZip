@@ -1149,7 +1149,7 @@ public class NPoint {
             }
         }
         //check activation set
-        if (dameAttack > 100_000_000) {
+        if (dameAttack > 500_000_000) {
             if (skillSelect.template.id == Skill.KAMEJOKO && player.isPl()) {
                 Service.gI().sendThongBaoBenDuoi(player.name + " đã đánh một " + player.playerSkill.skillSelect.template.name + " với sát thương " + Util.numberToMoney(Util.maxLong(dameAttack)));
             } else if (skillSelect.template.id == Skill.LIEN_HOAN && player.isPl()) {

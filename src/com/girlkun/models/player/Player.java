@@ -625,7 +625,7 @@ public class Player {
         } else if (this.idNRNM >= 353 && this.idNRNM <= 359) {
             return 30;
         }
-        if (this.inventory.itemsBody.size() == 11) {
+        if (this.inventory.itemsBody.size() == 10) {
             if (this.inventory.itemsBody.get(8).isNotNullItem()) {
                 return this.inventory.itemsBody.get(8).template.part;
             }

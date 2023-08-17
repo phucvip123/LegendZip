@@ -624,10 +624,20 @@ public class Mob {
         }
         }
         }
-        if (this.zone.map.mapId == 250){
-            if (Util.isTrue(15, 100)){
-        list.add(new ItemMap(zone, 2000+player.gender, 1, x, player.location.y, player.id));
-        }}
+        //up hòm tiếp tế
+        // if (this.zone.map.mapId == 250){
+        //     if (Util.isTrue(15, 100)){
+        //     list.add(new ItemMap(zone, 2000+player.gender, 1, x, player.location.y, player.id));
+        // }}
+        //up hồng ngọc + thỏi vàng map gohan nhật nguyệt
+        if(this.zone.map.mapId == 250 || this.zone.map.mapId == 251){
+            if(Util.isTrue(20, 100)){
+                list.add(new ItemMap(zone,861,Util.nextInt(5,20),x,player.location.y,player.id));
+            }
+            if(Util.isTrue(5, 100)){
+                list.add(new ItemMap(zone,457,1,x,player.location.y,player.id));
+            }
+        }
         if (MapService.gI().isMapBanDoKhoBau(player.zone.map.mapId)) {
             int level = player.clan.banDoKhoBau.level;
             int slhn = Util.nextInt(1, 3) * (level / 10);

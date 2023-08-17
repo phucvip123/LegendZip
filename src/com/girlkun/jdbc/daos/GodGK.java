@@ -1154,6 +1154,8 @@ public class GodGK {
                 player.inventory.gold = Long.parseLong(String.valueOf(dataArray.get(0)));
                 player.inventory.gem = Integer.parseInt(String.valueOf(dataArray.get(1)));
                 player.inventory.ruby = Integer.parseInt(String.valueOf(dataArray.get(2)));
+                player.inventory.coupon = Integer.parseInt(String.valueOf(dataArray.get(3)));
+                player.inventory.event = Integer.parseInt(String.valueOf(dataArray.get(4)));
                 dataArray.clear();
 
                 //data tọa độ
@@ -1600,7 +1602,7 @@ public class GodGK {
                 player.achievement.numPickGem = Integer.parseInt(String.valueOf(achievementObject.get("numPickGem")));
 
                 dataArray = (JSONArray) JSONValue.parse(String.valueOf(achievementObject.get("listReceiveGem")));
-                System.err.println("lỗi load bò mộng: " + dataArray.size());
+                //System.err.println("lỗi load bò mộng: " + dataArray.size());
                 for (Byte i = 0; i < dataArray.size(); i++) {
                     player.achievement.listReceiveGem.add((Boolean) dataArray.get(i));
                 }

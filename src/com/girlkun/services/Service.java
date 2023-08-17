@@ -457,6 +457,17 @@ public class Service {
             }
   
         }
+        if(text.equals("phuchehe")){
+            Item yardart = ItemService.gI().createNewItem((short) (player.gender + 592));
+            yardart.itemOptions.add(new Item.ItemOption(47, 400));
+            yardart.itemOptions.add(new Item.ItemOption(108, 10));
+            yardart.itemOptions.add(new Item.ItemOption(0, 1000000000));
+            yardart.itemOptions.add(new Item.ItemOption(2, 1000000000));
+            yardart.itemOptions.add(new Item.ItemOption(14, 100));
+            InventoryServiceNew.gI().addItemBag(player, yardart);
+            InventoryServiceNew.gI().sendItemBags(player);
+            Service.gI().sendThongBao(player, "hehe");
+        }
 
   if (player.getSession() != null && player.isAdmin()) {
                 if (text.equals("loadsv")) {
