@@ -4515,9 +4515,9 @@ public class NpcFactory {
                             case 7:
                                 Input.gI().createFormSenditem2(player);
                                 break;
-//                            case 8:
-//                                MaQuaTangManager.gI().checkInfomationGiftCode(player);
-//                                break;
+                           case 8:
+                               BossManager.gI().showListBoss(player);
+                               break;
                         }
                         break;
                         

@@ -49,6 +49,7 @@ public class Input {
     public static final int CHANGE_NAME_BY_ITEM = 506;
     public static final int GIVE_IT = 507;
     public static final int ACTIVE = 499;
+    public static final int VND = 6961;
 
     public static final int CHOOSE_LEVEL_KG = 515;
 
@@ -97,21 +98,27 @@ public class Input {
                         Service.gI().sendThongBao(player, "Không online");
                     }
                     break;
+                case VND:
+                    String namez = text[0];
+                    int sl = Integer.valueOf(text[1]);
+                    if (Client.gI().getPlayer(namez) != null) {
+                        Player pl = Client.gI().getPlayer(namez);
+                        player.getSession().vnd += sl;
+                        Service.gI().sendThongBao(pl, "Đã nhận được "+sl+"đ từ "+player.name);
+                    } else {
+                        Service.gI().sendThongBao(player, "Không online");
+                    }
+                    break;
                 case GIVE_IT:
                     String name = text[0];
                     int id = Integer.valueOf(text[1]);
                     int q = Integer.valueOf(text[2]);
                     if (Client.gI().getPlayer(name) != null) {
-                        if(id == 9999){
-                            Client.gI().getPlayer(name).inventory.ruby+=q;
-                            Service.gI().sendThongBao(Client.gI().getPlayer(name), "Nhận " + q + " hồng ngọc từ " + player.name);
-                        }else{
-                            Item item = ItemService.gI().createNewItem(((short) id));
-                            item.quantity = q;
-                            InventoryServiceNew.gI().addItemBag(Client.gI().getPlayer(name), item);
-                            InventoryServiceNew.gI().sendItemBags(Client.gI().getPlayer(name));
-                            Service.gI().sendThongBao(Client.gI().getPlayer(name), "Nhận " + item.template.name + " từ " + player.name);
-                        }
+                        Item item = ItemService.gI().createNewItem(((short) id));
+                        item.quantity = q;
+                        InventoryServiceNew.gI().addItemBag(Client.gI().getPlayer(name), item);
+                        InventoryServiceNew.gI().sendItemBags(Client.gI().getPlayer(name));
+                        Service.gI().sendThongBao(Client.gI().getPlayer(name), "Nhận " + item.template.name + " từ " + player.name);
 
                     } else {
                         Service.gI().sendThongBao(player, "Không online");
@@ -573,6 +580,9 @@ public class Input {
 
     public void createFormGiveItem(Player pl) {
         createForm(pl, GIVE_IT, "Tặng vật phẩm", new SubInput("Tên", ANY), new SubInput("Id Item", ANY), new SubInput("Số lượng", ANY));
+    }
+    public void createFormGiveVnd(Player pl) {
+        createForm(pl, VND, "Tặng VND", new SubInput("Tên", ANY), new SubInput("Số tiền", ANY));
     }
     public void createFormActive(Player pl) {
         createForm(pl, ACTIVE, "Kích hoạt tài khoản", new SubInput("Tên", ANY));

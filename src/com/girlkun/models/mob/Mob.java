@@ -491,7 +491,8 @@ public class Mob {
                if (Util.isTrue(5, 100)) {
                    random = 2;
                }
-               Item i = Manager.RUBY_REWARDS.get(Util.nextInt(0, Manager.RUBY_REWARDS.size() - 1));
+               Item i = new Item((short) 861);
+               //Item i = Manager.RUBY_REWARDS.get(Util.nextInt(0, Manager.RUBY_REWARDS.size() - 1));
                i.quantity = random;
                InventoryServiceNew.gI().addItemBag(player, i);
                InventoryServiceNew.gI().sendItemBags(player);

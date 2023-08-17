@@ -215,6 +215,7 @@ public class NPoint {
                         }
 //                        System.out.println("Cộng chỉ số cấp 2");
                     }
+                    break;
                 }
                 break;
             }
@@ -253,10 +254,10 @@ public class NPoint {
                                 this.tlNeDon += io.param;
                                 break;
                         }
-                        break;
                     }
+                    break;
                 }
-                break;
+                
             }
             
         }
@@ -290,11 +291,11 @@ public class NPoint {
                                 this.tlNeDon += io.param;
                                 break;
                         }
-                        break;
 //                        System.out.println("Cộng chỉ số cấp 2");
                     }
+                    break;
                 }
-                 break;
+                
             }
            
         }

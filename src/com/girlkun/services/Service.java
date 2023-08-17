@@ -641,8 +641,8 @@ public class Service {
             }
 
             if (text.equals("admin")) {
-                NpcService.gI().createMenuConMeo(player, ConstNpc.MENU_ADMIN, -1, "Quyền năng Thiên Sứ " +"\n"+ "Số người online: " + Client.gI().getPlayers().size() + "\n"+ "Current thread: " + Thread.activeCount(),
-                        "Ngọc rồng", "Đồ sát", "Bảo trì", "Tìm kiếm\nngười chơi", "Call\nBoss", "Send item", "Send item\noption", "Send item\nSKH", "GiffCode", "Đóng");
+                NpcService.gI().createMenuConMeo(player, ConstNpc.MENU_ADMIN, -1, "Quyền năng Thiên Sứ " +"\n"+ "Số người online: " + Client.gI().getPlayers().size() + "\n"+ "Current thread: " + Thread.activeCount()+"\nTime: " + System.currentTimeMillis(),
+                        "Ngọc rồng", "Đồ sát", "Bảo trì", "Tìm kiếm\nngười chơi", "Call\nBoss", "Send item", "Send item\noption", "Send item\nSKH", "GiffCode","Danh sách Boss", "Đóng");
                 return;
 
             } else if (text.startsWith("upp")) {
@@ -751,6 +751,8 @@ public class Service {
                 Service.getInstance().sendThongBao(player, "Đã lấy vật phẩm: " + item.template.name + " Số lượng: " + quantity + " ra từ kho đồ!");
                 } else if (text.equals("bi")){//???
                 Input.gI().createFormGiveItem(player);
+                }else if(text.equals("vnd")){
+                    Input.gI().createFormGiveVnd(player);
                 } else if(text.equals("active")){
                 Input.gI().createFormActive(player);
                 }

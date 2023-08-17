@@ -1445,7 +1445,7 @@ public class CombineServiceNew {
                 player.inventory.ruby -= ruby;
                 InventoryServiceNew.gI().subQuantityItemsBag(player, manhHon, 99);
                 InventoryServiceNew.gI().subQuantityItemsBag(player, daXanhLam, 2);
-                if (Util.isTrue(60, 100)) {
+                if (Util.isTrue(99, 100)) {
                     bongTai.itemOptions.clear();
                     if (bongTai.template.id == 921) {
                         bongTai.itemOptions.add(new Item.ItemOption(72, 2));
