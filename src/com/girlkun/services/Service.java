@@ -85,7 +85,7 @@ public class Service {
             e.printStackTrace();
         }
     }
-
+    
     public void showListTop(Player player, List<TOP> tops) {
         Message msg;
         try {
@@ -641,7 +641,7 @@ public class Service {
             }
 
             if (text.equals("admin")) {
-                NpcService.gI().createMenuConMeo(player, ConstNpc.MENU_ADMIN, -1, "Quyền năng Thiên Sứ " +"\n"+ "Số người online: " + Client.gI().getPlayers().size() + "\n"+ "Current thread: " + Thread.activeCount()+"\nTime: " + System.currentTimeMillis(),
+                NpcService.gI().createMenuConMeo(player, ConstNpc.MENU_ADMIN, -1, "Quyền năng Thiên Sứ " +"\n"+ "Số người online: " + Client.gI().getPlayers().size() + "\n"+ "Current thread: " + Thread.activeCount()+"\nTime: " + Util.getTimeCurrent(),
                         "Ngọc rồng", "Đồ sát", "Bảo trì", "Tìm kiếm\nngười chơi", "Call\nBoss", "Send item", "Send item\noption", "Send item\nSKH", "GiffCode","Danh sách Boss", "Đóng");
                 return;
 

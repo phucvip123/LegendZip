@@ -118,7 +118,7 @@ public class BanDoKhoBauService {
             if (MapService.gI().isMapBanDoKhoBau(pl.zone.map.mapId)) {
                 pl.bdkb_isJoinBdkb = false;
                 Service.getInstance().sendThongBao(pl, "Trận đại chiến đã kết thúc, tàu vận chuyển sẽ đưa bạn về nhà");
-                ItemTimeService.gI().sendTextTime(pl, (byte) 0, "Khánh đẹp zai", 0);
+                ItemTimeService.gI().sendTextTime(pl, (byte) 0, "Phúc đẹp zai", 0);
                 ChangeMapService.gI().changeMapBySpaceShip(pl, pl.gender + 21, -1, 250);
                 if (pl.clan.banDoKhoBau != null) {
                     pl.clan.banDoKhoBau.dispose();

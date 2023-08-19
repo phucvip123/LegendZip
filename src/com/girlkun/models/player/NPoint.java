@@ -723,7 +723,7 @@ public class NPoint {
                     && ((Pet) this.player).status != Pet.FUSION)) {
                 int percent = 100;
                 this.hpMax += ((long) this.hpMax * percent / 100);
-  //              this.tlDameCrit.add(5);
+                this.tlDameCrit.add(5);
             }
         }
 //        //mèo mun

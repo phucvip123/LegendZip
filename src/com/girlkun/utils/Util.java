@@ -29,6 +29,7 @@ import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 import javax.imageio.ImageIO;
 
@@ -583,6 +584,13 @@ public class Util {
     public static int nextIntDhvt(int from, int to) {
         return from + rand.nextInt(to - from);
     }
-
+    public static String getTimeCurrent() {
+        long millis = System.currentTimeMillis();
+        long hours = TimeUnit.MILLISECONDS.toHours(millis)%24+7;
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(millis) % 60;
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(millis) % 60;
+        
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
 
 }

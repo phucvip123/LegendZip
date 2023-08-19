@@ -226,6 +226,10 @@ public class UseItem {
                 }
                 default:
                     switch (item.template.id) {
+                        case 1237:
+                        case 1238:
+                        case 1239:
+                        case 1240:
                         case 1236:
                             useVotBatBo(pl);
                             break;
@@ -510,45 +514,45 @@ public class UseItem {
             String text = "Bạn nhận được\n";
             if (param <= 3) {
                 ruby = Util.nextInt(50, 100);
- //               listClothesReward = new int[]{randClothes(param)};
- //               listItemReward = Util.pickNRandInArr(listItem, 3);
+                listClothesReward = new int[]{randClothes(param)};
+                listItemReward = Util.pickNRandInArr(listItem, 3);
             } else if (param == 4) {
                 ruby = Util.nextInt(100, 150);
-//                listClothesReward = new int[]{randClothes(param), randClothes(param)};
- ///               listItemReward = Util.pickNRandInArr(listItem, 4);
+                listClothesReward = new int[]{randClothes(param), randClothes(param)};
+                listItemReward = Util.pickNRandInArr(listItem, 4);
             } else if (param == 5) {
                 ruby = Util.nextInt(150, 200);
-//                listClothesReward = new int[]{randClothes(param), randClothes(param)};
- ///               listItemReward = Util.pickNRandInArr(listItem, 4);
+                listClothesReward = new int[]{randClothes(param), randClothes(param)};
+                listItemReward = Util.pickNRandInArr(listItem, 4);
             } else if (param == 6) {
                 ruby = Util.nextInt(200, 250);
-//                listClothesReward = new int[]{randClothes(param), randClothes(param)};
- ///               listItemReward = Util.pickNRandInArr(listItem, 4);
+                listClothesReward = new int[]{randClothes(param), randClothes(param)};
+                listItemReward = Util.pickNRandInArr(listItem, 4);
             } else if (param == 7) {
                 ruby = Util.nextInt(250, 300);
-//                listClothesReward = new int[]{randClothes(param), randClothes(param)};
- ///               listItemReward = Util.pickNRandInArr(listItem, 4);
+                listClothesReward = new int[]{randClothes(param), randClothes(param)};
+               listItemReward = Util.pickNRandInArr(listItem, 4);
             } else if (param == 8) {
                 ruby = Util.nextInt(300, 350);
-//                listClothesReward = new int[]{randClothes(param), randClothes(param)};
- ///               listItemReward = Util.pickNRandInArr(listItem, 4);
+               listClothesReward = new int[]{randClothes(param), randClothes(param)};
+               listItemReward = Util.pickNRandInArr(listItem, 4);
             }else if (param == 9) {
                 ruby = Util.nextInt(350, 400);
-//                listClothesReward = new int[]{randClothes(param), randClothes(param)};
- ///               listItemReward = Util.pickNRandInArr(listItem, 4);
+                listClothesReward = new int[]{randClothes(param), randClothes(param)};
+                listItemReward = Util.pickNRandInArr(listItem, 4);
             } else if (param == 10) {
                 ruby = Util.nextInt(400, 450);
-//                listClothesReward = new int[]{randClothes(param), randClothes(param)};
- ///               listItemReward = Util.pickNRandInArr(listItem, 4);
+                listClothesReward = new int[]{randClothes(param), randClothes(param)};
+               listItemReward = Util.pickNRandInArr(listItem, 4);
             } else {
                 ruby = Util.nextInt(450, 500);
- ///               listClothesReward = new int[]{randClothes(param), randClothes(param), randClothes(param)};
- //               listItemReward = Util.pickNRandInArr(listItem, 5);
- //               int ruby = Util.nextInt(1, 5);
+               listClothesReward = new int[]{randClothes(param), randClothes(param), randClothes(param)};
+                listItemReward = Util.pickNRandInArr(listItem, 5);
+                ruby = Util.nextInt(1, 5);
                
                 
             }
-/*            for (int i : listClothesReward) {
+           for (int i : listClothesReward) {
                 itemReward = ItemService.gI().createNewItem((short) i);
                 RewardService.gI().initBaseOptionClothes(itemReward.template.id, itemReward.template.type, itemReward.itemOptions);
                 RewardService.gI().initStarOption(itemReward, new RewardService.RatioStar[]{new RewardService.RatioStar((byte) 1, 1, 2), new RewardService.RatioStar((byte) 2, 1, 3), new RewardService.RatioStar((byte) 3, 1, 4), new RewardService.RatioStar((byte) 4, 1, 5),});
@@ -562,7 +566,7 @@ public class UseItem {
                 InventoryServiceNew.gI().addItemBag(pl, itemReward);
                 pl.textRuongGo.add(text + itemReward.getInfoItem());
             }
-*/            
+           
             NpcService.gI().createMenuConMeo(pl, ConstNpc.RUONG_GO, -1, "Bạn nhận được\n|1|+" + ruby + " hồng ngọc", "OK [" + pl.textRuongGo.size() + "]");
             InventoryServiceNew.gI().subQuantityItemsBag(pl, item, 1);
              pl.inventory.ruby += ruby;
@@ -1066,11 +1070,11 @@ public class UseItem {
         ChangeMapService.gI().openChangeMapTab(pl);
     }
     public void useVotBatBo(Player pl){
-        int boKienVuong = InventoryServiceNew.gI().findItemBag(pl, 1237).quantity;
-        int boHung = InventoryServiceNew.gI().findItemBag(pl, 1238).quantity;
-        int boKepKim = InventoryServiceNew.gI().findItemBag(pl, 1239).quantity;
-        int huMatOng = InventoryServiceNew.gI().findItemBag(pl, 1240).quantity;
-        int vot = InventoryServiceNew.gI().findItemBag(pl, 1236).quantity;
+        int boKienVuong = InventoryServiceNew.gI().findItemBag(pl, 1237) == null ? 0 : InventoryServiceNew.gI().findItemBag(pl, 1237).quantity;
+        int boHung = InventoryServiceNew.gI().findItemBag(pl, 1238) == null ? 0 : InventoryServiceNew.gI().findItemBag(pl, 1238).quantity;
+        int boKepKim = InventoryServiceNew.gI().findItemBag(pl, 1239) == null ? 0 : InventoryServiceNew.gI().findItemBag(pl, 1239).quantity;
+        int huMatOng = InventoryServiceNew.gI().findItemBag(pl, 1240) == null ? 0 : InventoryServiceNew.gI().findItemBag(pl, 1240).quantity;
+        int vot = InventoryServiceNew.gI().findItemBag(pl, 1236) == null ? 0 : InventoryServiceNew.gI().findItemBag(pl, 1236).quantity;
         String s;
         s = "|7|Làm mồi nhử Bọ Ngài Đêm\n"
          +"|1|Bọ kiến vương hai sừng " +boKienVuong +"/20\n"
@@ -1212,8 +1216,8 @@ public class UseItem {
         NpcService.gI().createMenuConMeo(pl, item.template.id, -1, "Hãy chọn một món quà", "Áo", "Quần", "Găng", "Giày", "Rada", "Từ Chối");
     }
 
-    private void Hopts(Player pl, Item item) {//hop qua do huy diet
-        NpcService.gI().createMenuConMeo(pl, item.template.id, -1, "Chọn hành tinh của mày đi", "Set trái đất", "Set namec", "Set xayda", "Từ chổi");
+    private void Hopts(Player pl, Item item) {//hop qua do thien su
+        NpcService.gI().createMenuConMeo(pl, item.template.id, -1, "Chọn hành tinh của bạn đi", "Set trái đất", "Set namec", "Set xayda", "Từ chổi");
     }
 
 }

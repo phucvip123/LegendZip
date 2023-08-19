@@ -904,7 +904,7 @@ public class TaskService {
                             + "Bây giờ con hãy về nhà xin ông %2 rằng con sẽ vào bang hội nhé\n"
                             + "Ta sợ lão ấy không đồng ý lại quay sang trách móc cái thân già này..\n"
                             + "Đi đi con, nói khéo lão ấy nhé.");
-                    ruby = 11000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -936,7 +936,7 @@ public class TaskService {
                             + "Bây giờ con và 3 người họ hãy thể hiện tinh thần đoàn kết đi nào\n"
                             + "Cách phối hợp nhau làm nhiệm vụ, cách cư xử với nhau đó là hiện thân của tâm tính mỗi người\n"
                             + "Các con hãy đối nhân xử thế với nhau, hãy cùng hợp sức tiêu diệt lũ quái vật nhé");
-                    ruby = 13000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -954,7 +954,7 @@ public class TaskService {
                             + "Con hãy cùng 3 người trong bang lên đường tiêu diệt chúng nhé\n"
                             + "Dân chúng đặt niềm tin vào các con hết đấy..\n"
                             + "Đi đi...");
-                    ruby = 14000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -970,7 +970,7 @@ public class TaskService {
                             "Giỏi lắm các con\n"
                             + "Còn 1 vài con quái vật đầu sỏ nữa\n"
                             + "Con hãy tiêu diệt nốt chúng đi nhé..");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -987,7 +987,7 @@ public class TaskService {
                             + "Bên ngoài còn rất nhiều kẻ thù nguy hiểm, nên con phải không ngừng luyện tập nhé\n"
                             + "Lại có chuyện xảy ra rồi, Cui - một người họ hàng xa của họ hàng ta - đang gặp chuyện\n"
                             + "Con hãy tới thành phố Vegeta hỏi thăm tình hình cậu ta nhé! Đi đi con..");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -1000,7 +1000,7 @@ public class TaskService {
                             + "Bọn người ngoài hành tinh cầm đầu bởi tên Fide đã và đang đổ bộ vào quê hương của tôi..\n"
                             + "..chúng tàn sát hết dân lành và hủy hoại quê hương chúng tôi\n"
                             + "Cậu hãy giúp tôi 1 tay tiêu diệt bọn chúng nhé"); //need retext
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -1020,7 +1020,7 @@ public class TaskService {
                             "Cảm ơn cậu đã hỗ trợ tôi tiêu diệt bọn lính tay sai Fide\n"
                             + "3 tên cầm đầu chúng đang tức giận lắm, tôi thì không đủ mạnh để chống lại bọn chúng\n"
                             + "...");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -1038,7 +1038,7 @@ public class TaskService {
                             + "Chúng rất mạnh và rất trung thành với tên Fide\n"
                             + "Bọn chúng vừa được cử tới đi trả thù cho 3 tên đệ tử cậu vừa tiêu diệt\n"
                             + "Hãy chống lại bọn chúng giúp tôi nhé....");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -1061,7 +1061,7 @@ public class TaskService {
                             + "Không ổn rồi, tên Fide đại ca đã đích thân tới..\n"
                             + "Cậu hãy tới núi khỉ vàng tiêu diệt hắn giúp tôi nhé\n"
                             + "Dân làng sẽ biết ơn cậu rất nhiều đấy...");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -1078,7 +1078,7 @@ public class TaskService {
                     npcSay(player, ConstNpc.CUI,
                             "Cảm ơn cậu đã giúp chúng tôi tiêu diệt bọn Fide\n"
                             + "Cậu xứng đáng là người hùng của chúng tôi đó...");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -1096,7 +1096,7 @@ public class TaskService {
                 case ConstTask.TASK_22_4:
                     npcSay(player, ConstNpc.BUNMA_TL,
                             "Cứu bọn tôi với, bọn Kingkong");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -1112,7 +1112,7 @@ public class TaskService {
                case ConstTask.TASK_23_4:
                     npcSay(player, ConstNpc.BUNMA_TL,
                             "Cứu bọn tôi với, xên bọ hung");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -1128,7 +1128,7 @@ public class TaskService {
                 case ConstTask.TASK_24_4:
                     npcSay(player, ConstNpc.BUNMA_TL,
                             "Thanks");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -1148,7 +1148,7 @@ public class TaskService {
                             "Notify đang được update\n"
                             + "Notify đang được update\n"
                             + "Notify đang được update");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -1166,7 +1166,7 @@ public class TaskService {
                            "Notify đang được update\n"
                             + "Notify đang được update\n"
                             + "Notify đang được update");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break; 
@@ -1184,7 +1184,7 @@ public class TaskService {
                             "Notify đang được update\n"
                             + "Notify đang được update\n"
                             + "Notify đang được update");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -1204,7 +1204,7 @@ public class TaskService {
                             "Notify đang được update\n"
                             + "Notify đang được update\n"
                             + "Notify đang được update");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;
@@ -1222,7 +1222,7 @@ public class TaskService {
                              "Notify đang được update\n"
                             + "Notify đang được update\n"
                             + "Notify đang được update");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;    
@@ -1241,7 +1241,7 @@ public class TaskService {
                             "Notify đang được update\n"
                             + "Notify đang được update\n"
                             + "Notify đang được update");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;  
@@ -1259,7 +1259,7 @@ public class TaskService {
                             "Notify đang được update\n"
                             + "Notify đang được updatet\n"
                             + "Notify đang được update");
-                    ruby = 15000;
+                    ruby = 10000;
                     player.inventory.ruby += ruby;
                     Service.gI().sendThongBao(player, "Bạn đã nhận được "+ruby+" hồng ngọc");
                     break;      

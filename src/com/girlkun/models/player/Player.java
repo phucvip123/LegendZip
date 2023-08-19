@@ -275,7 +275,7 @@ public class Player {
                     if (itemTime != null) {
                         itemTime.update();
                         if (this.itemTime.isdkhi = false){
-        //                    Service.gI().setNotMonkey(this);
+                            Service.gI().setNotMonkey(this);
         Service.gI().Send_Caitrang(this);
         Service.gI().point(this);
         PlayerService.gI().sendInfoHpMp(this);
@@ -625,7 +625,7 @@ public class Player {
         } else if (this.idNRNM >= 353 && this.idNRNM <= 359) {
             return 30;
         }
-        if (this.inventory.itemsBody.size() == 10) {
+        if (this.inventory.itemsBody.size() == 11) {
             if (this.inventory.itemsBody.get(8).isNotNullItem()) {
                 return this.inventory.itemsBody.get(8).template.part;
             }

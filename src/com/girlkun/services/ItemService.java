@@ -223,19 +223,19 @@ public Item createItemFromItemShop(ItemShop itemShop) {
         }
         if (item.template.type== 1){
             item.itemOptions.add(new ItemOption(21,80));
-            item.itemOptions.add(new ItemOption(22, Util.nextInt(150,200)));
+            item.itemOptions.add(new ItemOption(22, Util.nextInt(75,150)));
         }
         if (item.template.type== 2){
             item.itemOptions.add(new ItemOption(21,80));
-            item.itemOptions.add(new ItemOption(0, Util.nextInt(18000,20000)));
+            item.itemOptions.add(new ItemOption(0, Util.nextInt(10,15)));
         }
         if (item.template.type== 3){
             item.itemOptions.add(new ItemOption(21,80));
-            item.itemOptions.add(new ItemOption(23, Util.nextInt(150,200)));
+            item.itemOptions.add(new ItemOption(23, Util.nextInt(75,150)));
         }
         if (item.template.type== 4){
             item.itemOptions.add(new ItemOption(21,80));
-            item.itemOptions.add(new ItemOption(14, Util.nextInt(20,25)));
+            item.itemOptions.add(new ItemOption(14, Util.nextInt(10,15)));
         }
         item.content = item.getContent();
         item.info = item.getInfo();

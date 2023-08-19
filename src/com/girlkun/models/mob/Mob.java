@@ -186,7 +186,7 @@ public class Mob {
         }
         tiemNang = (int) pl.nPoint.calSucManhTiemNang(tiemNang);
         if (pl.zone.map.mapId == 122 || pl.zone.map.mapId == 123 || pl.zone.map.mapId == 124 || pl.zone.map.mapId == 135 || pl.zone.map.mapId == 136 || pl.zone.map.mapId == 137 || pl.zone.map.mapId == 138 ) {
-            tiemNang *= 10;
+            tiemNang *= 2;
         }
         return tiemNang;
     }
@@ -632,10 +632,10 @@ public class Mob {
         // }}
         //up hồng ngọc + thỏi vàng map gohan nhật nguyệt
         if(this.zone.map.mapId == 250 || this.zone.map.mapId == 251){
-            if(Util.isTrue(20, 100)){
+            if(Util.isTrue(1, 100)){
                 list.add(new ItemMap(zone,861,Util.nextInt(5,20),x,player.location.y,player.id));
             }
-            if(Util.isTrue(5, 100)){
+            if(Util.isTrue(1, 100)){
                 list.add(new ItemMap(zone,457,1,x,player.location.y,player.id));
             }
         }

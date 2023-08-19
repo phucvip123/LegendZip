@@ -1,6 +1,7 @@
 package com.girlkun.models.boss;
 
 import com.girlkun.models.boss.list_boss.NgaiDem.NgaiDem;
+import com.girlkun.jdbc.daos.GodGK;
 import com.girlkun.models.boss.list_boss.AnTrom;
 import com.girlkun.models.boss.list_boss.BLACK.*;
 import com.girlkun.models.boss.list_boss.Cooler.Cooler;
@@ -51,6 +52,7 @@ import com.girlkun.models.boss.list_boss.kami.kamiSooMe;
 import com.girlkun.models.boss.list_boss.nappa.*;
 import com.girlkun.models.boss.list_boss.phoban.TrungUyXanhLoBdkb;
 import com.girlkun.models.map.Zone;
+import com.girlkun.models.matches.TOP;
 import com.girlkun.models.player.Player;
 import com.girlkun.network.io.Message;
 import com.girlkun.server.ServerManager;
@@ -336,7 +338,44 @@ public class BossManager implements Runnable {
     public boolean existBossOnPlayer(Player player) {
         return player.zone.getBosses().size() > 0;
     }
+        
+    public void showListBoss_2(Player player) {
+        Message msg;
+        try {
+            msg = new Message(-96);
+            msg.writer().writeByte(0);
+            msg.writer().writeUTF("Boss");
+            msg.writer().writeByte((int) bosses.stream().filter(boss -> !MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapBanDoKhoBau(boss.data[0].getMapJoin()[0]) && !MapService.gI().isnguhs(boss.data[0].getMapJoin()[0])).count());
 
+            for (int i = 0; i < bosses.size(); i++) {
+                Boss boss = bosses.get(i);
+                msg.writer().writeInt(i + 1);
+                msg.writer().writeInt(i);
+                msg.writer().writeShort(boss.data[0].getOutfit()[0]);
+                if (player.getSession().version > 214) {
+                    msg.writer().writeShort(-1);
+                }
+                msg.writer().writeShort(boss.data[0].getOutfit()[1]);
+                msg.writer().writeShort(boss.data[0].getOutfit()[2]);
+                msg.writer().writeUTF(boss.data[0].getName());
+                if (boss.zone != null) {
+                    msg.writer().writeUTF("Sống");
+                    if (player.isAdmin()) {
+                        msg.writer().writeUTF(boss.zone.map.mapName + " (" + boss.zone.map.mapId + ") khu " + boss.zone.zoneId + "");
+                    } else {
+                        msg.writer().writeUTF(boss.zone.map.mapName + " (" + boss.zone.map.mapId + ") khu ?");
+                    }
+                } else {
+                    msg.writer().writeUTF("Chết");
+                    msg.writer().writeUTF("Chết rồi");
+                }
+            }
+            player.sendMessage(msg);
+            msg.cleanup();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void showListBoss(Player player) {
        if (!player.isAdmin()) {
            return;
@@ -364,9 +403,9 @@ public class BossManager implements Runnable {
                 if (boss.zone != null) {
                     msg.writer().writeUTF("Sống");
                     if (player.isAdmin()) {
-                        msg.writer().writeUTF(boss.zone.map.mapName + "(" + boss.zone.map.mapId + ") khu " + boss.zone.zoneId + "");
+                        msg.writer().writeUTF(boss.zone.map.mapName + " (" + boss.zone.map.mapId + ") khu " + boss.zone.zoneId + "");
                     } else {
-                        msg.writer().writeUTF(boss.zone.map.mapName + "(" + boss.zone.map.mapId + ") khu ?");
+                        msg.writer().writeUTF(boss.zone.map.mapName + " (" + boss.zone.map.mapId + ") khu ?");
                     }
                 } else {
                     msg.writer().writeUTF("Chết");
