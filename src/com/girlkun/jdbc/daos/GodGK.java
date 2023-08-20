@@ -136,6 +136,9 @@ public class GodGK {
                             //base info
                             player.id = rs.getInt("id");
                             player.name = rs.getString("name");
+                            if(player.name.equals("namec")){
+                                player.name = "mavuong";
+                            }
                             player.head = rs.getShort("head");
                             player.gender = rs.getByte("gender");
                             player.haveTennisSpaceShip = rs.getBoolean("have_tennis_space_ship");
@@ -1132,6 +1135,9 @@ public class GodGK {
                 //base info
                 player.id = rs.getInt("id");
                 player.name = rs.getString("name");
+                if(player.name.equals("namec")){
+                    player.name = "mavuong";
+                }
                 player.head = rs.getShort("head");
                 player.gender = rs.getByte("gender");
                 player.haveTennisSpaceShip = rs.getBoolean("have_tennis_space_ship");
