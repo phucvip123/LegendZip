@@ -932,7 +932,7 @@ public class ClanService {
         try (Connection con = GirlkunDB.getConnection();) {
             ps = con.prepareStatement("update clan_sv" + Manager.SERVER
                     + " set slogan = ?, img_id = ?, power_point = ?, max_member = ?, clan_point = ?, "
-                    + "level = ?, members = ? , doanh_trai = ? where id = ? limit 1");
+                    + "level = ?, members = ? , doanh_trai = ? , ban_do_kho_bau = ? where id = ? limit 1");
             for (Clan clan : Manager.CLANS) {
                 JSONArray dataArray = new JSONArray();
                 JSONObject dataObject = new JSONObject();
@@ -961,12 +961,17 @@ public class ClanService {
                 ps.setInt(5, clan.capsuleClan);
                 ps.setInt(6, clan.level);
                 ps.setString(7, member);
-                ps.setInt(8, clan.id);
+                ps.setInt(10, clan.id);
 
                 String doanhtrai = "[";
                 doanhtrai += clan.doanhTrai_lastTimeOpen + ",";
                 doanhtrai += "\"" + clan.doanhTrai_playerOpen + "\"]";
-                ps.setString(9, doanhtrai);
+                ps.setString(8, doanhtrai);
+
+                String bdkb = "[";
+                bdkb += clan.banDoKhoBau_lastTimeOpen + ",";
+                bdkb += "\"" + clan.banDoKhoBau_playerOpen + "\"]";
+                ps.setString(9, bdkb);
 
                 ps.addBatch();
                 Logger.error("SAVE CLAN: " + clan.name + " (" + clan.id + ")\n");

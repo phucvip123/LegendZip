@@ -315,8 +315,8 @@ public class Clan {
             ps.setInt(7, this.capsuleClan);
             ps.setInt(8, this.level);
             ps.setString(9, member);
-            ps.setString(10, "[" + System.currentTimeMillis() + ",\"Khánh đẹp zai\"]");
-            ps.setString(11, "[" + System.currentTimeMillis() + ",\"Khánh đẹp zai\"]");
+            ps.setString(10, "[]");
+            ps.setString(11, "[]");
             ps.executeUpdate();
             ps.close();
         } catch (Exception e) {
@@ -354,7 +354,7 @@ public class Clan {
         try (Connection con = GirlkunDB.getConnection();) {
             ps = con.prepareStatement("update clan_sv" + Manager.SERVER
                     + " set slogan = ?, img_id = ?, power_point = ?, max_member = ?, clan_point = ?, "
-                    + "level = ?, members = ? where id = ? limit 1");
+                    + "level = ?, members = ? , doanh_trai = ? , ban_do_kho_bau = ? where id = ? limit 1");
             ps.setString(1, this.slogan);
             ps.setInt(2, this.imgId);
             ps.setLong(3, this.powerPoint);
@@ -362,7 +362,16 @@ public class Clan {
             ps.setInt(5, this.capsuleClan);
             ps.setInt(6, this.level);
             ps.setString(7, member);
-            ps.setInt(8, this.id);
+            ps.setInt(10, this.id);
+            String doanhtrai = "[";
+                doanhtrai += this.doanhTrai_lastTimeOpen + ",";
+                doanhtrai += "\"" + this.doanhTrai_playerOpen + "\"]";
+                ps.setString(8, doanhtrai);
+
+                String bdkb = "[";
+                bdkb += this.banDoKhoBau_lastTimeOpen + ",";
+                bdkb += "\"" + this.banDoKhoBau_playerOpen + "\"]";
+                ps.setString(9, bdkb);
             ps.executeUpdate();
             ps.close();
         } catch (Exception e) {

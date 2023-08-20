@@ -7,6 +7,8 @@ import com.girlkun.models.boss.BossID;
 import com.girlkun.models.boss.BossManager;
 import com.girlkun.models.boss.BossStatus;
 import static com.girlkun.models.item.ItemTime.BAN_DO_KHO_BAU;
+
+import com.arriety.models.map.bdkb.BanDoKhoBauService;
 import com.girlkun.models.map.ItemMap;
 import com.girlkun.models.map.Zone;
 import com.girlkun.models.player.Player;
@@ -199,6 +201,10 @@ public class TrungUyXanhLoBdkb extends Boss {
             ItemTimeService.gI().removeItemTime(pl, violate);
             ItemTimeService.gI().sendTextTime(pl, (byte) BAN_DO_KHO_BAU, "Bản đồ kho báu sắp kết thúc : ", 30);
         }
+        if(this.isDie()){
+            BanDoKhoBauService.gI().ketthucbdkb(plKill);
+        }
+        
     }
 }
 

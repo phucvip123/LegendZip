@@ -81,6 +81,7 @@ public class BanDoKhoBau {
             }
             ItemTimeService.gI().sendTextBanDoKhoBau(pl);
         }
+        clan.update();
 
     }
 

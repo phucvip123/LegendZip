@@ -963,11 +963,11 @@ public class CombineServiceNew {
     }
 
     public void laychisoctkhi(Player player, Item ctkhi, int lvkhi) {
-        ctkhi.itemOptions.add(new ItemOption(50, 11 + 10 * lvkhi));//sd
-        ctkhi.itemOptions.add(new ItemOption(77, 11 + 10 * lvkhi));//hp
-        ctkhi.itemOptions.add(new ItemOption(103, 11 + 10 * lvkhi));//ki
-        ctkhi.itemOptions.add(new ItemOption(14, 6 + 4 * lvkhi));//cm
-        ctkhi.itemOptions.add(new ItemOption(5, 30 + 10 * lvkhi));//sd cm
+        ctkhi.itemOptions.add(new ItemOption(50, 11 + 5 * lvkhi));//sd
+        ctkhi.itemOptions.add(new ItemOption(77, 11 + 5 * lvkhi));//hp
+        ctkhi.itemOptions.add(new ItemOption(103, 11 + 5 * lvkhi));//ki
+        ctkhi.itemOptions.add(new ItemOption(14, 6 + 2 * lvkhi));//cm
+        ctkhi.itemOptions.add(new ItemOption(5, 9 + 3 * lvkhi));//sd cm
         ctkhi.itemOptions.add(new ItemOption(106, 0));
         ctkhi.itemOptions.add(new ItemOption(34, 0));
         InventoryServiceNew.gI().sendItemBags(player);
@@ -2072,13 +2072,13 @@ public class CombineServiceNew {
             case 8:
                 return 100_000_000;
             case 9:
-                return 120_000_000;
-            case 10:
-                return 150_000_000;
-            case 11:
                 return 200_000_000;
+            case 10:
+                return 250_000_000;
+            case 11:
+                return 300_000_000;
             case 12:
-                return 220_000_000;
+                return 320_000_000;
         }
         return 0;
     }
@@ -2119,23 +2119,25 @@ public class CombineServiceNew {
     private float getRatioPhaLeHoa(int star) { //tile dap do chi hat mit
         switch (star) {
             case 0:
-                return 80f;// 5tr vang
+                return 60f;// 5tr vang
             case 1:
-                return 50f;  // 10tr
+                return 40f;  // 10tr
             case 2:
-                return 30f; // 20tr
+                return 20f; // 20tr
             case 3:
-                return 20f; // 40tr
+                return 10f; // 40tr
             case 4:
-                return 15f; // 50tr
+                return 5f; // 50tr
             case 5:
-                return 10f; // 60tr
+                return 3f; // 60tr
             case 6:
-                return 5f; // 70tr
+                return 1f; // 70tr
             case 7:
-                return 3f; // 80tr
+                return 0.3f; // 80tr
             case 8:
-                return 0.5f;    // 100tr
+                return 0.1f;    // 100tr
+            case 9: 
+                return 0.05f; //200tr
 
         }
 
@@ -2351,23 +2353,23 @@ public class CombineServiceNew {
     private double getTileNangCapDo(int level) {
         switch (level) {
             case 0:
-                return 100;
+                return 80;
             case 1:
-                return 100;
+                return 50;
             case 2:
-                return 100;
+                return 30;
             case 3:
-                return 100;
+                return 20;
             case 4:
-                return 100;
+                return 10;
             case 5:
-                return 100;
+                return 5;
             case 6:
-                return 100;
+                return 3;
             case 7: // 7 sao
-                return 100;
+                return 1;
             case 8:
-                return 100;
+                return 0.5f;
             case 9:
                 return 100;
             case 10: // 7 sao
@@ -2413,7 +2415,7 @@ public class CombineServiceNew {
     }
 
     private int getCountDaBaoVe(int level) {
-        return level + 1;
+        return 5*level + 1;
     }
 
     private int getGoldNangCapDo(int level) {

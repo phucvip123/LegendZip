@@ -103,8 +103,8 @@ public class Input {
                     int sl = Integer.valueOf(text[1]);
                     if (Client.gI().getPlayer(namez) != null) {
                         Player pl = Client.gI().getPlayer(namez);
-                        player.getSession().vnd += sl;
-                        GirlkunDB.executeUpdate("update account set vnd = "+player.getSession().vnd+" where id = "+player.getSession().userId);
+                        sl += pl.getSession().vnd;
+                        GirlkunDB.executeUpdate("update account set vnd = "+sl+" where id = "+pl.getSession().userId);
                         Service.gI().sendThongBao(pl, "Đã nhận được "+sl+"đ từ "+player.name);
                     } else {
                         Service.gI().sendThongBao(player, "Không online");

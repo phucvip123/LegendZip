@@ -633,9 +633,9 @@ public class Mob {
         //up hồng ngọc + thỏi vàng map gohan nhật nguyệt
         if(this.zone.map.mapId == 250 || this.zone.map.mapId == 251){
             if(Util.isTrue(1, 100)){
-                list.add(new ItemMap(zone,861,Util.nextInt(5,20),x,player.location.y,player.id));
+                list.add(new ItemMap(zone,861,Util.nextInt(5,10),x,player.location.y,player.id));
             }
-            if(Util.isTrue(1, 100)){
+            if(Util.isTrue(1, 1000)){
                 list.add(new ItemMap(zone,457,1,x,player.location.y,player.id));
             }
         }

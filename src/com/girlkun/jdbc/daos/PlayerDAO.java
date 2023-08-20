@@ -123,7 +123,7 @@ public class PlayerDAO {
                     opt.add(30); //id option cấm giao dịch
                     opt.add(1); //param option
                     item.add(457); //id item
-                    item.add(100); //số lượng
+                    item.add(50); //số lượng
                     options.add(opt.toJSONString());
                     opt.clear();
                 } else {

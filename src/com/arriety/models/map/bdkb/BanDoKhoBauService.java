@@ -46,7 +46,7 @@ public class BanDoKhoBauService {
             Service.getInstance().sendThongBao(pl, "Không thể thực hiện");
             return;
         }
-        if (pl.bdkb_countPerDay >= 3) {
+        if (pl.bdkb_countPerDay >= 5) {
             Service.getInstance().sendThongBao(pl, "Bạn đã đạt giới hạn lượt đi trong ngày");
             return;
         }
@@ -100,15 +100,14 @@ public class BanDoKhoBauService {
                 long now = System.currentTimeMillis();
                 if (!(now >= player.clan.banDoKhoBau_lastTimeOpen && now <= (player.clan.banDoKhoBau_lastTimeOpen + BanDoKhoBau.TIME_BAN_DO_KHO_BAU))) {
                     ketthucbdkb(player);
-                } else if (player.clan.banDoKhoBau.timePickReward && (System.currentTimeMillis() - player.clan.banDoKhoBau.getLastTimeOpen() > 2000)) {
+                } else if (player.clan.banDoKhoBau.timePickReward && (System.currentTimeMillis() - player.clan.banDoKhoBau_lastTimeOpen > BanDoKhoBau.TIME_BAN_DO_KHO_BAU + 2)) {
                     ketthucbdkb(player);
                 }
             }
         } catch (Exception ignored) {
         }
     }
-
-    private void ketthucbdkb(Player player) {
+    public void ketthucbdkb(Player player) {
         List<Player> playersMap = player.zone.getPlayers();
         for (int i = playersMap.size() - 1; i >= 0; i--) {
             Player pl = playersMap.get(i);

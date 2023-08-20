@@ -131,7 +131,7 @@ public class ItemTimeService {
     public void sendTextDoanhTrai(Player player) {
         if (player.clan != null) {
             if (player.clan.doanhTrai != null && player.clan != null && !player.clan.doanhTrai_haveGone && player.clan.doanhTrai_lastTimeOpen != 0) {
-                int secondPassed = (int) ((System.currentTimeMillis() - player.clan.doanhTrai.getLastTimeOpen()) / 1000);
+                int secondPassed = (int) ((System.currentTimeMillis() - player.clan.doanhTrai_lastTimeOpen) / 1000);
                 int secondsLeft = (DoanhTrai.TIME_DOANH_TRAI / 1000) - secondPassed;
                 sendTextTime(player, DOANH_TRAI, "Doanh trại độc nhãn", secondsLeft);
             }
@@ -141,7 +141,7 @@ public class ItemTimeService {
     public void sendTextBanDoKhoBau(Player player) {
         if (player.clan != null) {
             if (player.clan.banDoKhoBau != null && player.clan != null && !player.clan.banDoKhoBau_haveGone && player.clan.banDoKhoBau_lastTimeOpen != 0) {
-                int secondPassed = (int) ((System.currentTimeMillis() - player.clan.banDoKhoBau.getLastTimeOpen()) / 1000);
+                int secondPassed = (int) ((System.currentTimeMillis() - player.clan.banDoKhoBau_lastTimeOpen) / 1000);
                 int secondsLeft = (BanDoKhoBau.TIME_BAN_DO_KHO_BAU / 1000) - secondPassed;
                 sendTextTime(player, BAN_DO_KHO_BAU, "Bản đồ kho báu", secondsLeft);
             }

@@ -78,6 +78,7 @@ public class DoanhTrai {
             }
 
         }
+        clan.update();
     }
 
     public void init() {

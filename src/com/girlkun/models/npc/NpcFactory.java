@@ -359,7 +359,7 @@ public class NpcFactory {
                                         break;
                                     }
 
-                                    if (player.bdkb_countPerDay >= 3) {
+                                    if (player.bdkb_countPerDay >= 5 && player.clan.banDoKhoBau == null) {
                                         createOtherMenu(player, ConstNpc.IGNORE_MENU,
                                                 "Con đã đạt giới hạn lượt đi trong ngày",
                                                 "OK");
@@ -367,7 +367,7 @@ public class NpcFactory {
                                     }
 
                                     player.clan.banDoKhoBau_haveGone = !(System.currentTimeMillis() - player.clan.banDoKhoBau_lastTimeOpen > 300000);
-                                    if (player.clan.banDoKhoBau_haveGone) {
+                                    if (player.clan.banDoKhoBau_haveGone && player.clan.banDoKhoBau == null) {
                                         createOtherMenu(player, ConstNpc.IGNORE_MENU,
                                                 "Bang hội của con đã đi Bản Đồ lúc " + TimeUtil.formatTime(player.clan.banDoKhoBau_lastTimeOpen, "HH:mm:ss") + " hôm nay. Người mở\n"
                                                 + "(" + player.clan.banDoKhoBau_playerOpen + "). Hẹn con sau 5 phút nữa", "OK");
@@ -377,7 +377,7 @@ public class NpcFactory {
                                         createOtherMenu(player, ConstNpc.MENU_OPENED_DBKB,
                                                 "Bang hội của con đang tham gia Bản đồ kho báu cấp độ " + player.clan.banDoKhoBau.level + "\n"
                                                 + "Thời gian còn lại là "
-                                                + TimeUtil.getSecondLeft(player.clan.banDoKhoBau.getLastTimeOpen(), BanDoKhoBau.TIME_BAN_DO_KHO_BAU / 1000)
+                                                + TimeUtil.getSecondLeft(player.clan.banDoKhoBau_lastTimeOpen, BanDoKhoBau.TIME_BAN_DO_KHO_BAU / 1000)
                                                 + " giây. Con có muốn tham gia không?",
                                                 "Tham gia", "Không");
                                         break;
@@ -597,8 +597,11 @@ public class NpcFactory {
             public void openBaseMenu(Player player) {
                 if (canOpenNpc(player)) {
                     if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
+                        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+                                    String vnd = decimalFormat.format(player.getSession().vnd);
+                                    vnd = vnd.replaceAll(",",".");
                         this.createOtherMenu(player, ConstNpc.BASE_MENU,
-                                "|7|Chào con thầy còn giữ lại " + player.getSession().vnd + " Coin của con!\b|2|Tiền mà ít thì nạp lần đầu đi coan :>>"
+                                "|7|Chào con thầy còn giữ lại " + vnd + " vnd của con!\b|2|Tiền mà ít thì nạp lần đầu đi coan :>>"
                                 .replaceAll("%1", player.gender == ConstPlayer.TRAI_DAT ? "Quy lão Kamê"
                                         : player.gender == ConstPlayer.NAMEC ? "Trưởng lão Guru" : "Vua Vegeta"),
                                 "Đổi mật khẩu", "Nhận ngọc xanh", "Nhận đệ tử", "Cách kiếm vàng", "Kích hoạt\n Tài khoản", "GiftCode", "Hỗ trợ\nbỏ qua\nNhiệm vụ");
@@ -656,7 +659,7 @@ public class NpcFactory {
                                 if (!player.getSession().actived) {
                                     if (player.getSession().vnd >= 1) {
                                         player.getSession().actived = true;
-                                        if (PlayerDAO.subVnd(player, 5)) {
+                                        if (PlayerDAO.subVnd(player, 1)) {
                                             this.npcChat(player, "Đã mở thành viên thành công!");
                                         } else {
                                             this.npcChat(player, "Lỗi vui lòng báo admin...");
@@ -664,6 +667,8 @@ public class NpcFactory {
                                     } else {
                                         this.npcChat(player, "Bạn còn thiếu " + (1 - player.getSession().vnd) + " để mở thành viên");
                                     }
+                                }else{
+                                    Service.gI().sendThongBao(player,"Bạn đã mở thành viên rồi!");
                                 }
                                 break;
                             case 5:
@@ -1803,9 +1808,13 @@ public class NpcFactory {
                             case 0:
                                 if (this.mapId == 0 || this.mapId == 7 || this.mapId == 14) {
                                
-                                   if (player.session.actived){
-                                   ChangeMapService.gI().changeMapBySpaceShip(player, 250, -1, 295);
-                                break;
+                                   if (player.session.actived ){
+                                        if(player.nPoint.power >= 80_000_000_000L){
+                                            ChangeMapService.gI().changeMapBySpaceShip(player, 250, -1, 295);
+                                        }else{
+                                            Service.gI().sendThongBao(player, "Chưa đủ 80 tỷ sức mạnh");
+                                        }
+                                        break;
                                    } else {
                                        Service.getInstance().sendThongBao(player, "Hãy mở thành viên Để sử dụng");
                                    }
@@ -2703,7 +2712,7 @@ public class NpcFactory {
                         createOtherMenu(player, ConstNpc.MENU_JOIN_DOANH_TRAI,
                                 "Bang hội của ngươi đang đánh trại độc nhãn\n"
                                 + "Thời gian còn lại là "
-                                + TimeUtil.getSecondLeft(player.clan.doanhTrai.getLastTimeOpen(), DoanhTrai.TIME_DOANH_TRAI / 1000)
+                                + TimeUtil.getSecondLeft(player.clan.doanhTrai_lastTimeOpen, DoanhTrai.TIME_DOANH_TRAI / 1000)
                                 + ". Ngươi có muốn tham gia không?",
                                 "Tham gia", "Không", "Hướng\ndẫn\nthêm");
                         return;

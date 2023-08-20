@@ -53,7 +53,8 @@ public class BillEgg {
 
     public void openEgg(int gender) {
         if (this.player.pet != null) {
-            try {
+            if(this.player.nPoint.power >= 80_000_000_000L){
+                try {
                 destroyEgg();
                 Thread.sleep(4000);
                 if (this.player.pet == null) {
@@ -64,6 +65,9 @@ public class BillEgg {
                 ChangeMapService.gI().changeMapInYard(this.player, this.player.gender * 7, -1, Util.nextInt(300, 500));
                 player.billEgg = null;
             } catch (Exception e) {
+            }
+            }else{
+                Service.gI().sendThongBao(player, "Yêu cầu sức mạnh trên 80 tỷ");
             }
         } else {
             Service.gI().sendThongBao(player, "Yêu cầu phải có đệ tử");

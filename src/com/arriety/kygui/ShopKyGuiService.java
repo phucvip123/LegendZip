@@ -317,8 +317,8 @@ public class ShopKyGuiService {
                 return;
             }
 
-            if (quantity > 99) {
-                Service.gI().sendThongBao(pl, "Ký gửi tối đa x99");
+            if (quantity > 999) {
+                Service.gI().sendThongBao(pl, "Ký gửi tối đa x999");
                 openShopKyGui(pl);
                 return;
             }
@@ -333,6 +333,14 @@ public class ShopKyGuiService {
                     Service.gI().sendThongBao(pl, "Đăng bán thành công");
                     break;
                 case 1:// hồng ngọc
+                    InventoryServiceNew.gI().subQuantityItemsBag(pl, pl.inventory.itemsBag.get(id), quantity);
+                    ShopKyGuiManager.gI().listItem.add(new ItemKyGui(getMaxId() + 1, it.template.id, (int) pl.id, getTabKiGui(it), -1, money, quantity, (byte) 0, it.itemOptions, false));
+                    InventoryServiceNew.gI().sendItemBags(pl);
+                    openShopKyGui(pl);
+                    Service.gI().sendMoney(pl);
+                    Service.gI().sendThongBao(pl, "Đăng bán thành công");
+                    break;
+                case 2: //thỏi vàng
                     InventoryServiceNew.gI().subQuantityItemsBag(pl, pl.inventory.itemsBag.get(id), quantity);
                     ShopKyGuiManager.gI().listItem.add(new ItemKyGui(getMaxId() + 1, it.template.id, (int) pl.id, getTabKiGui(it), -1, money, quantity, (byte) 0, it.itemOptions, false));
                     InventoryServiceNew.gI().sendItemBags(pl);
@@ -424,7 +432,7 @@ public class ShopKyGuiService {
                         } else {
                             msg.writer().writeByte(itk.quantity);
                         }
-                        msg.writer().writeByte(itk.player_sell == pl.id ? 1 : 0); // isMe
+                        msg.writer().writeByte(itk.player_sell == pl.id ? 1 : 1); // isMe
                         msg.writer().writeByte(it.itemOptions.size());
                         for (int a = 0; a < it.itemOptions.size(); a++) {
                             msg.writer().writeByte(it.itemOptions.get(a).optionTemplate.id);

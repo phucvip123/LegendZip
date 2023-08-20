@@ -71,7 +71,7 @@ public class DoanhTraiService {
                  */
                 if (MapService.gI().isMapDoanhTrai(pl.zone.map.mapId)) {
                     Service.getInstance().sendThongBao(pl, "Trận đại chiến đã kết thúc, tàu vận chuyển sẽ đưa bạn về nhà");
-                    ItemTimeService.gI().sendTextTime(pl, (byte) 0, "Khánh Rác", 0);
+                    ItemTimeService.gI().sendTextTime(pl, (byte) 0, "Phúc hehe", 0);
                     ChangeMapService.gI().changeMapBySpaceShip(pl, pl.gender + 21, -1, 250);
                     if (pl.clan.doanhTrai != null) {
                         pl.clan.doanhTrai.dispose();
@@ -91,7 +91,7 @@ public class DoanhTraiService {
                 long now = System.currentTimeMillis();
                 if (!(now >= player.clan.doanhTrai_lastTimeOpen && now <= (player.clan.doanhTrai_lastTimeOpen + DoanhTrai.TIME_DOANH_TRAI))) {
                     ketthucDoanhTrai(player);
-                } else if (player.clan.doanhTrai.timePickDragonBall && (System.currentTimeMillis() - player.clan.doanhTrai.getLastTimeOpen() > 5000)) {
+                } else if (player.clan.doanhTrai.timePickDragonBall && (System.currentTimeMillis() - player.clan.doanhTrai_lastTimeOpen > DoanhTrai.TIME_DOANH_TRAI + 2)) {
                     ketthucDoanhTrai(player);
                 }
             }
