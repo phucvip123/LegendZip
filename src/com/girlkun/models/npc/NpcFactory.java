@@ -2056,9 +2056,9 @@ public class NpcFactory {
                             if (player.NguHanhSonPoint >= 500) {
                                 player.NguHanhSonPoint -= 500;
                                 Item item = ItemService.gI().createNewItem((short) (711));
-                                item.itemOptions.add(new Item.ItemOption(49, 50));
-                                item.itemOptions.add(new Item.ItemOption(77, 50));
-                                item.itemOptions.add(new Item.ItemOption(103, 50));
+                                item.itemOptions.add(new Item.ItemOption(49, 30));
+                                item.itemOptions.add(new Item.ItemOption(77, 30));
+                                item.itemOptions.add(new Item.ItemOption(103, 30));
                                 item.itemOptions.add(new Item.ItemOption(207, 0));
                                 item.itemOptions.add(new Item.ItemOption(33, 0));
 //                                      
@@ -2293,7 +2293,7 @@ public class NpcFactory {
                             createOtherMenu(pl, 1, "Tổng giải thường: " + ChonAiDay.gI().goldNormar + " thỏi vàng, cơ hội trúng của bạn là: " + pl.percentGold(0) + "%\nTổng giải VIP: " + ChonAiDay.gI().goldVip + " thỏi vàng, cơ hội trúng của bạn là: " + pl.percentGold(1) + "%\nSố thỏi vàng đặt thường: " + pl.goldNormar + "\nSố thỏi vàng đặt VIP: " + pl.goldVIP + "\n Thời gian còn lại: " + time, "Cập nhập", "Thường\n20 thỏi\nvàng", "VIP\n200 thỏi\nvàng", "Đóng");
                         }
                     } else if (pl.iDMark.getIndexMenu() == 1) {
-                        if (((ChonAiDay.gI().lastTimeEnd - System.currentTimeMillis()) / 1000) > 0) {
+                        if (((ChonAiDay.gI().lastTimeEnd - System.currentTimeMillis()) / 1000) > 0 && pl.getSession().actived) {
                             switch (select) {
                                 case 0:
                                     createOtherMenu(pl, 1, "Tổng giải thường: " + ChonAiDay.gI().goldNormar + " thỏi vàng, cơ hội trúng của bạn là: " + pl.percentGold(0) + "%\nTổng giải VIP: " + ChonAiDay.gI().goldVip + " thỏi vàng, cơ hội trúng của bạn là: " + pl.percentGold(1) + "%\nSố thỏi vàng đặt thường: " + pl.goldNormar + "\nSố thỏi vàng đặt VIP: " + pl.goldVIP + "\n Thời gian còn lại: " + time, "Cập nhập", "Thường\n20 thỏi\nvàng", "VIP\n200 thỏi\nvàng", "Đóng");
@@ -2337,6 +2337,8 @@ public class NpcFactory {
                                 break;
 
                             }
+                        }else{
+                            Service.gI().sendThongBao(pl,"Vui lòng mở thành viên để chơi");
                         }
                     }
                 }
